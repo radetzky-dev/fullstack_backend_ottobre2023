@@ -1,6 +1,7 @@
 <?php
 $siteTitle = "Benvenuto nella mia pagina";
 $name = "Paolo";
+$myName= "dhjsdf";
 ?>
 <!DOCTYPE html>
 <html lang="ita">

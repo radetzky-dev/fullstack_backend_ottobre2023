@@ -1,21 +1,27 @@
 <?php
 
-$a = 10;
-$c = 15;
+$a = 10.81;
+$c = -15;
 $d = 1;
+
+var_dump($a);
 
 function sum($a, $b)
 {
-    $myName ="mario";
+    $myName = "Mario";
+
+    var_dump($myName);
+
+    $mySurname = "Rossi";
     global $c;
-    echo "Ciao sono $myName";
+    echo 'Ciao sono ' . $myName . " " . $mySurname.'<br>';
 
     return $a + $b + $c + $GLOBALS['d'];
 }
 
 function testStatic()
 {
-    static $num =10;
+    static $num = 10;
     echo $num;
     $num++;
 }

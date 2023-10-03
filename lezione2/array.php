@@ -19,3 +19,15 @@ print_r($array);
 
 echo "Stampa la posizione 4 ".$array[4]."<br>";
 echo "Stampa la posizione 3 ".$array[3]."<br>";
+
+
+//se vuoi che cominci da uno
+$firstquarter = array(1 => 'January', 'February', 'March');
+print_r($firstquarter);
+
+$foo = array('bar' => 'baz', 'mario' => 'Rossi', "Bianchi");
+print_r($foo);
+
+echo "Hello {$foo['bar']}!<br>"; // Hello baz!
+echo "Cognome {$foo['mario']}!<br>";
+echo "Test ".$foo[0]."<br>";

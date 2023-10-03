@@ -84,3 +84,26 @@ if($otherVar && $myVar )
 { 
     echo "ok";
 }
+
+
+$valore = 5;
+
+echo $valore."<br>";
+$valore--;
+echo $valore."xxx<br>";
+++$valore;
+echo $valore."xxx<br>";
+
+$x = 10;  
+echo $x--;
+echo "<br>";
+echo $x;
+
+$uno ="Hello";
+$uno.= " World<br>";
+
+echo $uno;
+
+$uno = $uno. " due";
+
+echo $uno;

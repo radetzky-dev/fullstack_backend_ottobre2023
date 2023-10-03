@@ -9,7 +9,7 @@ $cars = array("Volvo", "Ferrari", "Fiat", "Saab", 12, true, 33.4, $myVar);
 
 //stampa il contenuto dell'array
 
-echo "La tua auto è una " . $cars[1] . "<br>";
+echo "La tua auto è una " . $cars[1] . "<br><p>ciao</p>";
 echo "La tua auto è una " . $cars[3] . "<br>";
 echo "La tua auto è una " . $cars[7] . "<br>";
 
@@ -32,6 +32,10 @@ print_r($foo);
 echo "Hello {$foo['bar']}!<br>"; // Hello baz!
 echo "Cognome {$foo['mario']}!<br>";
 echo "Test " . $foo[0] . "<br>";
+?>
+<h3>Test</h3>
+
+<?php
 
 echo "<hr>";
 $numbers = array(1, 2, 3, 4, 5, 6);

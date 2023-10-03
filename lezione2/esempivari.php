@@ -74,3 +74,13 @@ var_dump($b >= $a);
 
 var_dump("1" =="01");
 var_dump("2" =="000002");
+
+var_dump($a && $b);
+
+$myVar = true;
+$otherVar= false;
+
+if($otherVar && $myVar )
+{ 
+    echo "ok";
+}

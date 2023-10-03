@@ -1,3 +1,5 @@
+
+<h2>Esempi sugli array</h2>
 <?php
 
 //inizia da 0

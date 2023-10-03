@@ -47,3 +47,30 @@ var_dump($x);
 
 echo (5 % 3)."<br>";
 
+?>
+
+<h2>Comparazione</h2>
+
+<?php
+
+$a=10;
+$b="10";
+$c= 10;
+$d = 4;
+
+var_dump($a == $b);
+var_dump($a === $b);
+var_dump($a === $c);
+
+var_dump($a != $d);
+
+var_dump($a != $b);
+var_dump($a !== $b);
+
+var_dump($a > $d);
+var_dump($a < $d);
+var_dump($a > $b);
+var_dump($b >= $a);
+
+var_dump("1" =="01");
+var_dump("2" =="000002");

@@ -32,10 +32,10 @@ $catalogo = array(
 //Inserisce dei nuovi prodotti nelle varie categorie
 $catalogo["utensili"][] = array("nome" => "pala", "prezzo" => 14.99, "qta" => 5);
 $catalogo["casalinghi"][] = array("nome" => "tegame", "prezzo" => 35.99, "qta" => 2);
-$catalogo["casalinghi"][] = array("nome" => "pentola", "prezzo" => 45.99, "qta" => 0);
+$catalogo["cucina"][] = array("nome" => "pentola", "prezzo" => 45.99, "qta" => 0);
 $catalogo["giardinaggio"][] = array("nome" => "vaso", "prezzo" => 9.99, "qta" => 0);
 $catalogo["giardinaggio"][] = array("nome" => "zappa", "prezzo" => 12.99, "qta" => 1);
-$catalogo["utensili"][] = array("nome" => "cacciavite", "prezzo" => 6.99, "qta" => 7);
+$catalogo["ferramenta"][] = array("nome" => "cacciavite", "prezzo" => 6.99, "qta" => 7);
 
 /**
  * showCategory

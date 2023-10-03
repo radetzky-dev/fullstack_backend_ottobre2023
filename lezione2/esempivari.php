@@ -26,12 +26,16 @@ var_dump($x);
 $x=$x+2;
 echo "x vale ".$x."<br>";
 $x++;
+
+$x += 5;
+
 echo "x vale ".$x."<br>";
 
 $x--;
 echo "x vale ".$x."<br>";
 
 $x=$x-3;
+$x -= 4;
 echo "x vale ".$x."<br>";
 $x=$x*3;
 echo "x vale ".$x."<br>";

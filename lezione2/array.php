@@ -32,3 +32,22 @@ print_r($foo);
 echo "Hello {$foo['bar']}!<br>"; // Hello baz!
 echo "Cognome {$foo['mario']}!<br>";
 echo "Test " . $foo[0] . "<br>";
+
+echo "<hr>";
+$numbers = array(1, 2, 3, 4, 5, 6);
+
+$fruits = array (
+    "fruits"  => array("a" => "orange", "b" => "banana", "c" => "apple"),
+    "numbers" => $numbers,
+    "holes"   => array("first", 5 => "second", "third")
+);
+
+var_dump($fruits);
+
+echo "<hr>";
+echo "Orange " . $fruits['fruits']['a'] . "<br>";
+echo "First " . $fruits['holes'][0] . "<br>";
+echo "Apple " . $fruits['fruits']['c'] . "<br>";
+echo "second " . $fruits['holes'][5] . "<br>";
+echo "third " . $fruits['holes'][6] . "<br>";
+echo "3 " . $fruits['numbers'][2] . "<br>";

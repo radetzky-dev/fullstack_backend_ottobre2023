@@ -53,12 +53,15 @@ $t = date("H");
 
 if ($t < "10") {
     echo "Have a good morning!";
+} elseif ($t>="10" && $t < "11") {
+    echo "Ora del caffè";
 } elseif ($t < "20") {
     echo "Have a good day!";
 } else {
     echo "Have a good night!";
 }
 
+echo "<hr>";
 $b = 4;
 if ($a > $b) {
     echo "a is greater than b<br>";

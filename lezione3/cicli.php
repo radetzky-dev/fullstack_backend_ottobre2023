@@ -60,6 +60,9 @@ $a = array(
     "Sonia" => 5
 );
 
+echo "<hr>";
+echo $a["Mario"];
+
 foreach ($a as $chiave => $valore) {
     echo "la chiave è $chiave e il valore è $valore <br>";
 }

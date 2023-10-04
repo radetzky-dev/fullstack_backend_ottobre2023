@@ -40,3 +40,45 @@ for($i=5; $i>=0; $i--)
 {
 echo $i.'<br>';
 }
+
+
+$arr = array(1, "secondo", 3, "ultimo","ultimissimo!!!");
+foreach ($arr as $pippo) {
+   echo "Valore $pippo <br>";
+}
+
+$a = array(1, 2, 3, 17,89);
+
+foreach ($a as $v) {
+    echo "Current value of $v<br>";
+}
+
+$a = array(
+    "Mario" => 25,
+    "Piero" => 21,
+    "Marisa" => 32,
+    "Sonia" => 5
+);
+
+foreach ($a as $chiave => $valore) {
+    echo "la chiave è $chiave e il valore è $valore <br>";
+}
+
+//Scorrere array bidimensionale
+echo "<hr>";
+$a = array();
+$a[0][0] = "elem 1 primo array";
+$a[0][1] = "elem 2 primo array";
+$a[1][0] = "elem 1 SECONDO array";
+$a[1][1] = "elem 2 SECONDO array";
+
+var_dump($a);
+
+echo "<hr>";
+
+foreach ($a as $v1) {
+    echo "Array <br>";
+    foreach ($v1 as $v2) {
+        echo "$v2<br>";
+    }
+}

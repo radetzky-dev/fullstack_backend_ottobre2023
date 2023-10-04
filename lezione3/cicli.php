@@ -82,3 +82,12 @@ foreach ($a as $v1) {
         echo "$v2<br>";
     }
 }
+
+//list
+
+$info = array('coffee', 'brown', 'caffeine','prova importante!');
+
+// Listing all the variables
+list($drink, $color, $power,$prova) = $info;
+echo "$drink is $color and $power makes it special.<br>";
+echo "Questa è una <b>$prova</b><br>";

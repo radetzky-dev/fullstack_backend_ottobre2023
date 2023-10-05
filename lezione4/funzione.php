@@ -119,6 +119,7 @@ echo "<hr>";
  function stampaMioNome($name)
 {
     echo "Hello $name";
+   
 }
  function stampaEta($age)
 {

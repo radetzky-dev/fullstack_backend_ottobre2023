@@ -147,3 +147,15 @@ $data = array(1, 1., NULL, new stdClass, 'foo');
 foreach ($data as $value) {
     echo gettype($value), "<br>";
 }
+
+
+$varC = "5a";
+
+$varB = (int) $varC;
+
+echo gettype($varB);
+echo "Valore ".$varB;
+
+echo "<hr>";
+$sum = 54.32+$varB+intval($varC);
+echo $sum;

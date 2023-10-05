@@ -69,7 +69,6 @@ function simpleSumNoSign($a, $b): int
     return 0;
 }
 
-
 $myArr = ["auto" => "mini", "ferrari"];
 
 echo "Somma di vari numeri " . sumAllElements(2, true, 1, "paolo", 1, 1, $myArr) . "<br>";
@@ -83,22 +82,38 @@ echo "<hr>";
 class Student
 {
     public $name;
-    public function __construct($name)
+    public $surname;
+
+    public function __construct($name, $surname)
     {
         $this->name = $name;
+        $this->surname = $surname;
     }
 }
-// la funzione accetta solo oggetti di tipo Student
-// forza il passaggio del parametro ad essere istanza di Student
-function infoStudent(Student $student)
-{
-    echo "Nome " . $student->name;
-}
-$obj_student = new Student("Giulia");
-// stampa il valore della proprietà "name"...
-infoStudent($obj_student);
 
-$studentTwo = new Student("Mario");
-infoStudent($studentTwo);
+
+
+/**
+ * infoStudent
+ *
+ * @param  mixed $student
+ * @return array
+ */
+function infoStudent(Student $student) : array
+{
+    $name = $student->name;
+    $surname = $student->surname;
+    $city ="Roma";
+    return [$name,$surname, $city];
+}
+
+$obj_student = new Student("Giulia", "bianchi");
+// stampa il valore della proprietà "name"...
+list($name,$surname, $city)= infoStudent($obj_student);
+echo "Lo studente si chiama $name $surname viene da $city<br>";
+
+$studentTwo = new Student("Mario", "Rossi");
+list($name,$surname,$city)= infoStudent($studentTwo);
+echo "Lo studente si chiama $name $surname di $city<br>";
 
 echo "<hr>";

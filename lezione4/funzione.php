@@ -13,6 +13,12 @@ function foo()
     }
 }
 
+foo(1, 2, 3);
+
+foo("paolo", "mario", "silvia", "maria", "dario");
+
+echo "<hr>";
+
 /**
  * sumAllElements
  *
@@ -63,16 +69,14 @@ function simpleSumNoSign($a, $b): int
     return 0;
 }
 
-foo(1, 2, 3);
 
-foo("paolo", "mario", "silvia", "maria", "dario");
 $myArr = ["auto" => "mini", "ferrari"];
 
-echo "Somma di due numeri " . simpleSum(3, 2) . "<br>";
-
-echo "Somma di due numeri " . simpleSumNoSign("p", 2) . "<br>";
-
 echo "Somma di vari numeri " . sumAllElements(2, true, 1, "paolo", 1, 1, $myArr) . "<br>";
+echo "<hr>";
+
+echo "Somma di due numeri " . simpleSum(4, 2) . "<br>";
+echo "Somma di due numeri " . simpleSumNoSign("p", 2) . "<br>";
 
 echo "<hr>";
 
@@ -95,3 +99,6 @@ $obj_student = new Student("Giulia");
 infoStudent($obj_student);
 
 $studentTwo = new Student("Mario");
+infoStudent($studentTwo);
+
+echo "<hr>";

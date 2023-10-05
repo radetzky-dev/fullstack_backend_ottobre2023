@@ -55,7 +55,7 @@ function simpleSum(int $a, int $b): int
  * @param  mixed $b
  * @return int
  */
-function simpleSumNoSign($a, $b) : int
+function simpleSumNoSign($a, $b): int
 {
     if (is_numeric($a) && is_numeric($b)) {
         return $a + $b;
@@ -69,6 +69,29 @@ foo("paolo", "mario", "silvia", "maria", "dario");
 $myArr = ["auto" => "mini", "ferrari"];
 
 echo "Somma di due numeri " . simpleSum(3, 2) . "<br>";
+
 echo "Somma di due numeri " . simpleSumNoSign("p", 2) . "<br>";
 
 echo "Somma di vari numeri " . sumAllElements(2, true, 1, "paolo", 1, 1, $myArr) . "<br>";
+
+echo "<hr>";
+
+class Student
+{
+    public $name;
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+}
+// la funzione accetta solo oggetti di tipo Student
+// forza il passaggio del parametro ad essere istanza di Student
+function infoStudent(Student $student)
+{
+    echo "Nome " . $student->name;
+}
+$obj_student = new Student("Giulia");
+// stampa il valore della proprietà "name"...
+infoStudent($obj_student);
+
+$studentTwo = new Student("Mario");

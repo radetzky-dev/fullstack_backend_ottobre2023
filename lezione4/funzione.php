@@ -117,3 +117,17 @@ list($name,$surname,$city)= infoStudent($studentTwo);
 echo "Lo studente si chiama $name $surname di $city<br>";
 
 echo "<hr>";
+
+function stampaMioNome($name) {
+    echo "Hello $name";
+  }
+
+  function stampaEta($age) {
+    echo "Your age $age";
+  }
+  
+  $myFunction = "stampaMioNome";
+  $myFunction("Paolo");
+
+  $myFunctionAge = "stampaEta";
+  $myFunctionAge(39);

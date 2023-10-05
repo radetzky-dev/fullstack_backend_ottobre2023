@@ -91,43 +91,68 @@ class Student
     }
 }
 
-
-
 /**
  * infoStudent
  *
  * @param  mixed $student
  * @return array
  */
-function infoStudent(Student $student) : array
+function infoStudent(Student $student): array
 {
     $name = $student->name;
     $surname = $student->surname;
-    $city ="Roma";
-    return [$name,$surname, $city];
+    $city = "Roma";
+    return [$name, $surname, $city];
 }
 
 $obj_student = new Student("Giulia", "bianchi");
 // stampa il valore della proprietà "name"...
-list($name,$surname, $city)= infoStudent($obj_student);
+list($name, $surname, $city) = infoStudent($obj_student);
 echo "Lo studente si chiama $name $surname viene da $city<br>";
 
 $studentTwo = new Student("Mario", "Rossi");
-list($name,$surname,$city)= infoStudent($studentTwo);
+list($name, $surname, $city) = infoStudent($studentTwo);
 echo "Lo studente si chiama $name $surname di $city<br>";
 
 echo "<hr>";
 
-function stampaMioNome($name) {
+ function stampaMioNome($name)
+{
     echo "Hello $name";
-  }
-
-  function stampaEta($age) {
+}
+ function stampaEta($age)
+{
     echo "Your age $age";
-  }
-  
-  $myFunction = "stampaMioNome";
-  $myFunction("Paolo");
+}
 
-  $myFunctionAge = "stampaEta";
-  $myFunctionAge(39);
+$myFunction = "stampaMioNome";
+$myFunction("Paolo");
+
+$myFunctionAge = "stampaEta";
+$myFunctionAge(39);
+
+$greet = function ($name) {
+    printf("Hello %s<br>", $name);
+};
+
+$greet('World');
+$greet('PHP');
+
+
+echo "<hr>";
+
+$array = array('Ruby', 'PHP', 'JavaScript', 'HTML');
+
+echo "<pre>";
+print_r($array);
+echo "</pre>";
+
+//uso della closure o callback
+array_walk($array, function(&$v) {
+  $v = $v . ' : Programming Language';
+  $v = strtoupper($v);
+});
+
+echo "<pre>";
+print_r($array);
+echo "</pre>";

@@ -147,6 +147,7 @@ echo "<pre>";
 print_r($array);
 echo "</pre>";
 
+
 //uso della closure o callback
 array_walk($array, function(&$v) {
   $v = $v . ' : Programming Language';

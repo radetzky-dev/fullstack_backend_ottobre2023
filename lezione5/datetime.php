@@ -76,4 +76,48 @@ echo " DOMANI ".$tomorrow->format('Y-m-d');
 
 
 echo "<hr>";
+
+//Le variabili per creare le date https://www.php.net/manual/en/datetimeimmutable.createfromformat.php
+
+$date = DateTimeImmutable::createFromFormat('Ymd', '20231006');
+echo $date->format('d-m-Y');
+echo "<hr>";
+
+echo 'Current time: ' . date('Y-m-d H:i:s') . "<br>";
+$format = 'd-m-Y';
+$date = DateTimeImmutable::createFromFormat($format, '15-02-2005');
+echo "Format: $format; " . $date->format('d-m-Y H:i:s') . "<br>";
+
+echo "<hr>";
+$date = new DateTimeImmutable();
+$newDate = $date->setDate(2023,10, 6);
+echo $newDate->format('d-m-Y');
+
+echo "<hr>";
+$date = new DateTimeImmutable('2001-01-01');
+
+$newDate = $date->setTime(14, 55,19);
+echo $newDate->format('Y-m-d H:i:s') . "<br>";
+
+$newDate = $date->setTime(14, 55, 45);
+echo $newDate->format('Y-m-d H:i:s') . "<br>";
+
+echo "<hr>";
+$date = new DateTimeImmutable('2006-12-12');
+$newDate = $date->modify('+1 day');
+echo $newDate->format('d-m-Y');
+
+echo "<hr>";
+
+$one_year = new DateInterval('P1Y');
+$one_year_ago = new DateTime();
+
+echo $one_year_ago->format('d-m-Y').'<br>';
+$one_year_ago->sub($one_year);
+echo $one_year_ago->format('d-m-Y').'<br>';
+$one_year_ago->add($one_year);
+$one_year_ago->add($one_year);
+echo $one_year_ago->format('d-m-Y');
+echo "<hr>";
+echo "<hr>";
 echo "<hr>";

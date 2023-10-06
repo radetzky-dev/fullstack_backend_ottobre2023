@@ -14,7 +14,7 @@
 
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (    ["REQUEST_METHOD"] == "POST") {
     $name = $_POST['fname'];
     $surname = $_POST['fsurname'];
     if (empty($name)) {

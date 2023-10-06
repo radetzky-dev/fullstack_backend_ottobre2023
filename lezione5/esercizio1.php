@@ -42,6 +42,6 @@ foreach ($dates as $date) {
         DateTime::createFromFormat('j-n-Y', $date));
     $suffix = $interval->days > 1 ? 'i' : 'o';
     $prefix = $interval->days > 1 ? 'no' : '';
-    echo PHP_EOL;
+
     echo 'Sie nato il '.$date.' e al tuo compleanno manca'.$prefix.' ' . $interval->days . ' giorn' . $suffix.'<br>';
 }

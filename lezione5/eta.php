@@ -2,6 +2,9 @@
    <body>
 
 <?php
+$name = "";
+$age = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "POST case<br>";
     if ($_POST["name"] || $_POST["age"]) {
@@ -10,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Welcome " . $_POST['name'] . "<br />";
             echo "You are " . $_POST['age'] . " years old.";
+            $name = $_POST['name'];
+            $age = $_POST['age'];
         }
 
     }
@@ -23,14 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo "You are " . $_GET['age'] . " years old.";
         }
     }
-
 }
 ?>
 
-    <h2>con post</h2>
+    <h2>Con post</h2>
       <form action = "<?php $_PHP_SELF?>" method = "POST">
-         Name: <input type = "text" name = "name" />
-         Age: <input type = "text" name = "age" />
+         Name: <input type = "text" name = "name" value="<?php echo $name;?>"/>
+         Age: <input type = "text" name = "age" value="<?php echo $age;?>"/>
          <input type = "submit" />
       </form>
 

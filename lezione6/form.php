@@ -16,17 +16,50 @@ $name = $surname = $phone = $anagraficaArray =$company = $qualifica = $dummyName
 
 var_dump($_SERVER['REQUEST_METHOD']);
 
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $canRegister = false;
     //gestiamo la chiamata
-    $name = $_POST['nome'];
-    $surname = $_POST['cognome'];
+    $name = ucfirst($_POST['nome']);
+    $surname = ucfirst($_POST['cognome']);
+
+
     $phone = $_POST['telefono'];
     $birthdate = $_POST['birthdate'];
+    var_dump($birthdate);
+
+    // "1920-02-01"
+    $anno = substr($birthdate,0,4);
+  //  echo $anno;
+    $mese = substr($birthdate,5,2);
+  //  echo $mese;
+    $giorno = substr($birthdate,-2,2);
+ //   echo $giorno;
+
     $terms = $_POST['terms'];
     $terms = isset($_POST['terms']) ? 1 : 0;
 
-    //nome e cognome -> prima lettera upper case
-    //data di nascita controlli che sia valida e che sia maggiorenne ( > 18 anni)
+
+    $today = new DateTime('now');
+    $birthday = new DateTime();
+    $birthday->setDate($anno, $mese, $giorno);
+
+    $interval= $birthday->diff($today);
+
+   // var_dump($interval);
+
+    if ($interval->y >=18)
+    {
+        echo "Sei maggiorenne";
+        $canRegister = true;
+    } else
+    {
+        echo "Sei minorenne NON puoi registrarti";
+    }
+
+    //salvo i dati in un JSON
 
     //se esistono i campi company ecc opzionali di valorizzarli nel form (is not empty)
 
@@ -96,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
 
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="terms" name="terms" required 
+                        <input type="checkbox" class="form-check-input" id="terms" name="terms" 
                         <?php
         if (!empty($terms))
         {
@@ -104,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
                         ?>
                         
-                        >
+                        required  >
                         <label class="form-check-label" for="exampleCheck1">Accetta i nostri termini di servizio</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

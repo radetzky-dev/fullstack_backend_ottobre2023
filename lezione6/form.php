@@ -12,7 +12,28 @@
 $dummyPhoto = "assets/dummyphoto.png";
 //$dummyPhoto = "https://dummyimage.com/300";
 
-$name = $surname = $phone = $anagraficaArray =$company = $qualifica = $dummyName= $email =$birthdate = $dummySurname = $dummyText = "";
+$name = $surname = $phone = $anagraficaArray =$company = $qualifica = $dummyName= $email =$birthdate = $dummySurname = $dummyText = $terms=  "";
+
+var_dump($_SERVER['REQUEST_METHOD']);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //gestiamo la chiamata
+    $name = $_POST['nome'];
+    $surname = $_POST['cognome'];
+    $phone = $_POST['telefono'];
+    $birthdate = $_POST['birthdate'];
+    $terms = $_POST['terms'];
+    $terms = isset($_POST['terms']) ? 1 : 0;
+
+    //nome e cognome -> prima lettera upper case
+    //data di nascita controlli che sia valida e che sia maggiorenne ( > 18 anni)
+
+    //se esistono i campi company ecc opzionali di valorizzarli nel form (is not empty)
+
+    //todo mettere la data max di oggi nel form
+    
+
+}
 
 ?>
 
@@ -59,7 +80,7 @@ $name = $surname = $phone = $anagraficaArray =$company = $qualifica = $dummyName
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email (opz)" value="<?= $email ?>" required>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email (opz)" value="<?= $email ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputTelephone">Telefono</label>
@@ -69,13 +90,21 @@ $name = $surname = $phone = $anagraficaArray =$company = $qualifica = $dummyName
                     <div class="form-group">
                         <label for="exampleInputBirthDate">Data di nascita</label>
                         <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Data di nascita"
-                            value="<?= $birthdate ?>" required>
+                            value="<?= $birthdate ?>" required min="1920-01-01" max="2023-01-01">
                     </div>
 
                 
 
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                        <input type="checkbox" class="form-check-input" id="terms" name="terms" required 
+                        <?php
+        if (!empty($terms))
+        {
+            echo "checked";
+        }
+                        ?>
+                        
+                        >
                         <label class="form-check-label" for="exampleCheck1">Accetta i nostri termini di servizio</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

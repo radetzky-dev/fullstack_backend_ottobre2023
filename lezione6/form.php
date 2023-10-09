@@ -9,14 +9,55 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
 <?php
+
+
+/**
+ * checkAge
+ *
+ * @param  mixed $birthdate
+ * @return bool
+ */
+function checkAge($birthdate): bool
+{
+    $anno = substr($birthdate, 0, 4);
+    $mese = substr($birthdate, 5, 2);
+    $giorno = substr($birthdate, -2, 2);
+    $today = new DateTime('now');
+    $birthday = new DateTime();
+    $birthday->setDate($anno, $mese, $giorno);
+    $interval = $birthday->diff($today);
+
+    // var_dump($interval);
+
+    if ($interval->y >= 18) {
+        echo "Sei maggiorenne";
+        return true;
+    } else {
+        echo "Sei minorenne NON puoi registrarti";
+        return false;
+    }
+}
+
+/**
+ * getTodayDate
+ *
+ * @return string
+ */
+function getTodayDate(): string
+{
+    $today = new DateTime('now');
+    $todayYear = $today->format('Y');
+    $todayMonth = $today->format('m');
+    $todayDay = $today->format('d');
+    return $todayYear . "-" . $todayMonth . "-" . $todayDay;
+}
+
 $dummyPhoto = "assets/dummyphoto.png";
 //$dummyPhoto = "https://dummyimage.com/300";
 
-$name = $surname = $phone = $anagraficaArray =$company = $qualifica = $dummyName= $email =$birthdate = $dummySurname = $dummyText = $terms=  "";
+$name = $surname = $phone = $anagraficaArray = $company = $qualifica = $dummyName = $email = $birthdate = $dummySurname = $dummyText = $terms = "";
 
 var_dump($_SERVER['REQUEST_METHOD']);
-
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -24,47 +65,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //gestiamo la chiamata
     $name = ucfirst($_POST['nome']);
     $surname = ucfirst($_POST['cognome']);
-
-
     $phone = $_POST['telefono'];
-    $birthdate = $_POST['birthdate'];
-    var_dump($birthdate);
-
-    // "1920-02-01"
-    $anno = substr($birthdate,0,4);
-  //  echo $anno;
-    $mese = substr($birthdate,5,2);
-  //  echo $mese;
-    $giorno = substr($birthdate,-2,2);
- //   echo $giorno;
 
     $terms = $_POST['terms'];
     $terms = isset($_POST['terms']) ? 1 : 0;
 
+    $birthdate = $_POST['birthdate'];
+    $canRegister = checkAge($birthdate);
 
-    $today = new DateTime('now');
-    $birthday = new DateTime();
-    $birthday->setDate($anno, $mese, $giorno);
-
-    $interval= $birthday->diff($today);
-
-   // var_dump($interval);
-
-    if ($interval->y >=18)
-    {
-        echo "Sei maggiorenne";
-        $canRegister = true;
-    } else
-    {
-        echo "Sei minorenne NON puoi registrarti";
+    if (strlen($phone) < 10) {
+        echo "Numero telefonico non corretto!";
+        $canRegister = false;
     }
 
-    //salvo i dati in un JSON
-
     //se esistono i campi company ecc opzionali di valorizzarli nel form (is not empty)
+    if (isset($_POST['societa'])) {
+        $company = $_POST['societa'];
+    }
 
-    //todo mettere la data max di oggi nel form
-    
+    if (isset($_POST['qualifica'])) {
+        $qualifica = $_POST['qualifica'];
+    }
+
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+    }
+
+    //TODO salvare i dati in un JSON solo se canregister è TRUE
+
 
 }
 
@@ -74,15 +102,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <h3>Registration form</h3>
         <div class="row">
-        <div class="col">
+            <div class="col">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="<?= $dummyPhoto; ?>" id="profilePhoto" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title" id="namesurname"><?= $dummyName . ' ' . $dummySurname; ?></h5>
-                        <p class="card-text"><?= $dummyText; ?></p>
+                        <h5 class="card-title" id="namesurname">
+                            <?= $dummyName . ' ' . $dummySurname; ?>
+                        </h5>
+                        <p class="card-text">
+                            <?= $dummyText; ?>
+                        </p>
                         <button class="btn btn-primary">Dati corretti: registrami</button>
                     </div>
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" id="FormProfilePhoto">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data"
+                        id="FormProfilePhoto">
                         <input type="file" name="file">
                         <input type="hidden" name="uploadPhoto" value="uploadPhoto" />
                         <input type="hidden" name="otherFormInfo" value="<?= $anagraficaArray; ?>" />
@@ -105,15 +138,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="company">Società</label>
-                        <input type="text" class="form-control" id="societa" name="societa" placeholder="Società (opz)" value="<?= $company ?>">
+                        <input type="text" class="form-control" id="societa" name="societa" placeholder="Società (opz)"
+                            value="<?= $company ?>">
                     </div>
                     <div class="form-group">
                         <label for="company">Qualifica</label>
-                        <input type="text" class="form-control" id="qualifica" name="qualifica" placeholder="Qualifica (opz)" value="<?= $qualifica ?>">
+                        <input type="text" class="form-control" id="qualifica" name="qualifica"
+                            placeholder="Qualifica (opz)" value="<?= $qualifica ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email (opz)" value="<?= $email ?>">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                            placeholder="Enter email (opz)" value="<?= $email ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputTelephone">Telefono</label>
@@ -122,22 +158,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="exampleInputBirthDate">Data di nascita</label>
-                        <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Data di nascita"
-                            value="<?= $birthdate ?>" required min="1920-01-01" max="2023-01-01">
+                        <input type="date" class="form-control" id="birthdate" name="birthdate"
+                            placeholder="Data di nascita" value="<?= $birthdate ?>" required min="1920-01-01"
+                            max="<?php echo getTodayDate(); ?>">
                     </div>
 
-                
-
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="terms" name="terms" 
-                        <?php
-        if (!empty($terms))
-        {
-            echo "checked";
-        }
-                        ?>
-                        
-                        required  >
+                        <input type="checkbox" class="form-check-input" id="terms" name="terms" <?php
+                        if (!empty($terms)) {
+                            echo "checked";
+                        }
+                        ?> required>
                         <label class="form-check-label" for="exampleCheck1">Accetta i nostri termini di servizio</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -148,4 +179,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

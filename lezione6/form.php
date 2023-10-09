@@ -61,35 +61,59 @@ var_dump($_SERVER['REQUEST_METHOD']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $canRegister = false;
-    //gestiamo la chiamata
-    $name = ucfirst($_POST['nome']);
-    $surname = ucfirst($_POST['cognome']);
-    $phone = $_POST['telefono'];
+    if (isset($_POST['uploadPhoto'])) {
 
-    $terms = $_POST['terms'];
-    $terms = isset($_POST['terms']) ? 1 : 0;
+        echo "carico immagine...";
+        //Todo caricare immagine
+        if ($_FILES) {
+            $uploadDir = __DIR__ . '/assets';
+            foreach ($_FILES as $file) {
+                if (UPLOAD_ERR_OK === $file['error']) {
+                    $fileName = basename($file['name']);
+                    $result = move_uploaded_file($file['tmp_name'], $uploadDir . DIRECTORY_SEPARATOR . $fileName);
+                    if ($result) {
+                        $dummyPhoto = "uploads" . DIRECTORY_SEPARATOR . $fileName;
+                        $dummyPhoto = "assets/".$fileName;
+                    } else {
+                        echo '<br>ERRORE NEL CARICAMENTO DELL\'IMMAGINE!<br>';
+                    }
+                }
+            }
+        }
 
-    $birthdate = $_POST['birthdate'];
-    $canRegister = checkAge($birthdate);
-
-    if (strlen($phone) < 10) {
-        echo "Numero telefonico non corretto!";
+    } else {
         $canRegister = false;
+        //gestiamo la chiamata
+        $name = ucfirst($_POST['nome']);
+        $surname = ucfirst($_POST['cognome']);
+        $phone = $_POST['telefono'];
+
+        $terms = $_POST['terms'];
+        $terms = isset($_POST['terms']) ? 1 : 0;
+
+        $birthdate = $_POST['birthdate'];
+        $canRegister = checkAge($birthdate);
+
+        if (strlen($phone) < 10) {
+            echo "Numero telefonico non corretto!";
+            $canRegister = false;
+        }
+
+        //se esistono i campi company ecc opzionali di valorizzarli nel form (is not empty)
+        if (isset($_POST['societa'])) {
+            $company = $_POST['societa'];
+        }
+
+        if (isset($_POST['qualifica'])) {
+            $qualifica = $_POST['qualifica'];
+        }
+
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+        }
     }
 
-    //se esistono i campi company ecc opzionali di valorizzarli nel form (is not empty)
-    if (isset($_POST['societa'])) {
-        $company = $_POST['societa'];
-    }
 
-    if (isset($_POST['qualifica'])) {
-        $qualifica = $_POST['qualifica'];
-    }
-
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-    }
 
     //TODO salvare i dati in un JSON solo se canregister è TRUE
 

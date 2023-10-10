@@ -103,6 +103,7 @@
         <div class="row">
             <div class="col">
                 <div class="card" style="width: 25rem;">
+                <label for="testo">Lista dei file presenti nella cartella</label>
                 <textarea class="form-control" id="showFiles" rows="2"><?php echo $filesList; ?></textarea>
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <div class="form-group">

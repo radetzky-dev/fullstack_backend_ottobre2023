@@ -10,6 +10,12 @@
     //Vars
     $PATH_DIR = "data/";
 
+    if (isset($_POST['filename'])) {
+        $filename = $_POST['filename'];
+    } else {
+        $filename = "default.dat";
+    }
+
     /**
      * writeContentIntoFile
      *
@@ -55,47 +61,53 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $filename = 'numbers.dat';
+
+
         if (isset($_POST['delfile'])) {
             unlink($PATH_DIR . $filename);
-           // echo "File $filename cancellato correttamente!<br>";
+            // echo "File $filename cancellato correttamente!<br>";
         }
 
         if (isset($_POST['testo'])) {
             $content = $_POST['testo'];
             //programma
             $result = writeContentIntoFile($PATH_DIR . $filename, $content);
-
-            /*
-            if (!$result) {
-                echo "<p>Errore nella scrittura \ lettura del file: $PATH_DIR$filename!</p>";
-            } else {
-                echo "<p>Success, wrote ($content) to file ($PATH_DIR$filename)</p>";
-            }
-            */
         }
-        $content = readContentFile($PATH_DIR . $filename);
-        // echo "<pre>$content</pre>";
-    
     }
+
+    $content = readContentFile($PATH_DIR . $filename);
     ?>
 
     <div class="container">
         <h2>Scrittura di un file</h2>
         <div class="row">
             <div class="col">
-                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <div class="form-group">
-                        <label for="testo">Testo da salvare nel file</label>
-                        <input type="text" class="form-control" id="testo" name="testo" placeholder="Testo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="testo">Cancella file e crealo vuoto</label>
-                        <input type="checkbox" class="form-check-input" id="delfile" name="delfile">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Inserisci testo</button>
-                </form>
-                <textarea class="form-control" id="showTesto" rows="15"><?php echo $content; ?></textarea>
+                <div class="card" style="width: 25rem;">
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <div class="form-group">
+                            <label for="testo">Testo da salvare nel file</label>
+                            <input type="text" class="form-control" id="testo" name="testo" placeholder="Testo"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="testo">Nome del file</label>
+                            <input type="text" class="form-control" id="filename" name="filename"
+                                value="<?php echo $filename; ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="testo">Cancella file e crealo vuoto</label>
+                            <input type="checkbox" class="form-check-input" id="delfile" name="delfile">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="testo">Cancella TUTTI i file</label>
+                            <input type="checkbox" class="form-check-input" id="delallfiles" name="delallfiles">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Inserisci testo</button>
+                    </form>
+                    <textarea class="form-control" id="showTesto" rows="15"><?php echo $content; ?></textarea>
+                </div>
             </div>
         </div>
     </div>

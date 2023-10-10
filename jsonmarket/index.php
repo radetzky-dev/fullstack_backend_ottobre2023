@@ -13,10 +13,47 @@ function readContentFile($fileNameWithPath): string
 }
 
 
+function writeContentIntoFile($fileNameWithPath, $content): bool
+{
+    $action = "wb"; //crealo
+
+    if (!$fp = fopen($fileNameWithPath, $action)) {
+        return false;
+    }
+    if (fwrite($fp, $content) === false) {
+        return false;
+    }
+    fclose($fp);
+    return true;
+}
+
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-   var_dump($_POST);
+    $myFile = readContentFile("data/prodotti.json");
+    $strumentiMusicali = json_decode($myFile, true);
+
+    echo "<pre>";
+    // print_r($strumentiMusicali);
+    echo "</pre>";
+
+    echo "<br>DA INSERIRE<br>";
+
+    var_dump($_REQUEST);
+
+    $newElem = ['id' => 1, 'marca' => $_REQUEST['marca'], 'name' => $_REQUEST['description'], 'price' => $_REQUEST['price'], 'number' => $_REQUEST['qta']];
+
+    $category = $_REQUEST['tipo'];
+    $strumentiMusicali['items'][$category][] = $newElem;
+
+    echo "<pre>";
+    print_r($strumentiMusicali);
+    echo "</pre>";
+
+    $jsonString = json_encode($strumentiMusicali);
+    $result = writeContentIntoFile("data/prodotti.json", $jsonString);
+    die();
 }
 
 ?>
@@ -81,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="testo">Price</label>
                     <input type="numeric" class="form-control" id="price" name="price" placeholder="price" required>
 
-                    <select>
+                    <select id="tipo" name="tipo">
                         <?php
                         foreach ($instruments as $key => $value) {
                             echo '<option value="' . $value . '">' . $value . '</option>';

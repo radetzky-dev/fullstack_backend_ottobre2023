@@ -1,0 +1,57 @@
+{
+  "items": {
+    "chitarre": [
+      {
+        "id": "0001",
+        "marca": "FENDER",
+        "name": "FENDER Affinity Stratocaster HH LRL Olympic",
+        "price": 245,
+        "number": 1,
+        "tipologia": [
+          { "id": "5001", "type": "chitarra" },
+          { "id": "5002", "type": "elettrica" }
+        ]
+      },
+
+      {
+        "id": "0002",
+        "marca": "JASCKSON",
+        "name": "JACKSON JS24 Dinky DKAM CM Red Stain",
+        "price": 319,
+        "number": 4,
+        "tipologia": [
+          { "id": "5001", "type": "chitarra" },
+          { "id": "5003", "type": "acustica" }
+        ]
+      }
+    ],
+    "bassi": [
+      {
+        "id": "B001",
+        "marca": "EKO",
+        "name": "EKO NXT B100ce Natural",
+        "price": 319,
+        "number": 1,
+        "tipologia": [
+          { "id": "5001", "type": "basso" },
+          { "id": "5003", "type": "elettrico" }
+        ]
+      }
+
+    ],
+    "tastiere": [
+      {
+        "id": "T001",
+        "marca": "KORG",
+        "name": "KORG Pa5X-61",
+        "price": 4190,
+        "number": 2,
+        "tipologia": [
+          { "id": "5001", "type": "tastiera" },
+          { "id": "5003", "type": "elettrico" }
+        ]
+      }
+    
+    ]
+  }
+}

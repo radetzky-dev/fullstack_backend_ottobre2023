@@ -35,6 +35,49 @@
         return true;
     }
 
+    /**
+     * readContentFile
+     *
+     * @param  mixed $fileNameWithPath
+     * @return string
+     */
+    function readContentFile($fileNameWithPath): string
+    {
+        $content = "";
+
+        if (!$myfile = fopen($fileNameWithPath, "r")) {
+            return "";
+        }
+        $content = fread($myfile, filesize($fileNameWithPath));
+        fclose($myfile);
+        return $content;
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $filename = 'numbers.dat';
+        if (isset($_POST['delfile'])) {
+            unlink($PATH_DIR . $filename);
+           // echo "File $filename cancellato correttamente!<br>";
+        }
+
+        if (isset($_POST['testo'])) {
+            $content = $_POST['testo'];
+            //programma
+            $result = writeContentIntoFile($PATH_DIR . $filename, $content);
+
+            /*
+            if (!$result) {
+                echo "<p>Errore nella scrittura \ lettura del file: $PATH_DIR$filename!</p>";
+            } else {
+                echo "<p>Success, wrote ($content) to file ($PATH_DIR$filename)</p>";
+            }
+            */
+        }
+        $content = readContentFile($PATH_DIR . $filename);
+        // echo "<pre>$content</pre>";
+    
+    }
     ?>
 
     <div class="container">
@@ -46,43 +89,16 @@
                         <label for="testo">Testo da salvare nel file</label>
                         <input type="text" class="form-control" id="testo" name="testo" placeholder="Testo" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label for="testo">Cancella file e crealo vuoto</label>
+                        <input type="checkbox" class="form-check-input" id="delfile" name="delfile">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Inserisci testo</button>
                 </form>
-                <textarea class="form-control" id="showTesto" rows="3"></textarea>
+                <textarea class="form-control" id="showTesto" rows="15"><?php echo $content; ?></textarea>
             </div>
         </div>
-
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $filename = 'numbers.dat';
-            if (isset($_POST['testo'])) {
-                $content = $_POST['testo'];
-                //programma
-                $result = writeContentIntoFile($PATH_DIR . $filename, $content);
-
-                if (!$result) {
-                    echo "<p>Errore nella scrittura \ lettura del file: $PATH_DIR$filename!</p>";
-                } else {
-                    echo "<p>Success, wrote ($content) to file ($PATH_DIR$filename)</p>";
-                }
-            }
-
-            $content = "";
-            $myfile = fopen($PATH_DIR . $filename, "r") or die("<p>Unable to open file!</p>");
-            $content= fread($myfile,filesize($PATH_DIR . $filename));
-            fclose($myfile);
-
-            echo "<pre>$content</pre>";
-
-
-        }
-        ?>
-
     </div>
-
-
-
 </body>
 
 </html>

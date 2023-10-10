@@ -13,26 +13,11 @@ function readContentFile($fileNameWithPath): string
 }
 
 
-/*
 
-foreach ($strumentiMusicali['items']['chitarre'] as $chitarra) {
-    echo "<pre>";
-    var_dump($chitarra);
-    echo "</pre>";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+   var_dump($_POST);
 }
-echo "<hr>";
-foreach ($strumentiMusicali['items']['bassi'] as $chitarra) {
-    echo "<pre>";
-    var_dump($chitarra);
-    echo "</pre>";
-}
-echo "<hr>";
-foreach ($strumentiMusicali['items']['tastiere'] as $chitarra) {
-    echo "<pre>";
-    var_dump($chitarra);
-    echo "</pre>";
-}
-*/
 
 ?>
 
@@ -52,7 +37,6 @@ foreach ($strumentiMusicali['items']['tastiere'] as $chitarra) {
     <container>
         <div class="container">
             <h3>JsonMusicMarket</h3>
-            <button class='btn btn-primary'>Aggiungi prodotto</button>
             <table class="table table-bordered" id="tabella">
                 <thead thead class="thead-dark">
                     <tr>
@@ -68,18 +52,46 @@ foreach ($strumentiMusicali['items']['tastiere'] as $chitarra) {
                     <?php
                     $myFile = readContentFile("data/prodotti.json");
                     $strumentiMusicali = json_decode($myFile, true);
+                    $categorie = [];
 
                     foreach ($strumentiMusicali['items'] as $key => $strumenti) {
-                        foreach ($strumenti as $strumento)
-                        {
-                            echo '<tr><td>'.$strumento['number'] .'</td><td>'. $strumento['marca'] .' </td><td>'. $strumento['name'].'</td><td> '. $strumento['price'].'</td><td> '.$key.'</td><td>BUY</td></tr>';
-                   
+                        foreach ($strumenti as $strumento) {
+                            echo '<tr><td>' . $strumento['number'] . '</td><td>' . $strumento['marca'] . ' </td><td>' . $strumento['name'] . '</td><td> ' . $strumento['price'] . '</td><td> ' . $key . '</td><td>BUY</td></tr>';
+                            $categorie[] = $key;
+
                         }
 
                     }
                     ?>
                 </tbody>
             </table>
+            <?php
+            $instruments = array_unique($categorie);
+
+            ?>
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <div class="form-group">
+                    <label for="testo">Qta</label>
+                    <input type="numeric" class="form-control" id="qta" name="qta" placeholder="1" required>
+                    <label for="testo">Marca</label>
+                    <input type="text" class="form-control" id="marca" name="marca" placeholder="marca" required>
+                    <label for="testo">Descrizione</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        placeholder="description" required>
+                    <label for="testo">Price</label>
+                    <input type="numeric" class="form-control" id="price" name="price" placeholder="price" required>
+
+                    <select>
+                        <?php
+                        foreach ($instruments as $key => $value) {
+                            echo '<option value="' . $value . '">' . $value . '</option>';
+                        }
+                        ?>
+                    </select>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Aggiungi prodotto testo</button>
+            </form>
         </div>
     </container>
 </body>

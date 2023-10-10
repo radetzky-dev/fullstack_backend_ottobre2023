@@ -58,9 +58,27 @@
         fclose($myfile);
         return $content;
     }
+    
+    /**
+     * getFilesListInDir
+     *
+     * @param  mixed $PATH_DIR
+     * @return array
+     */
+    function getFilesListInDir($path) : array
+    {
+        return array_diff(scandir($path), array('..', '.'));
+    }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        if (isset($_POST['delallfiles'])) {
+            $files = getFilesListInDir($PATH_DIR);
+            foreach ($files as $file) {
+                unlink($PATH_DIR . $file);
+            }
+            // echo "File $filename cancellato correttamente!<br>";
+        }
 
 
         if (isset($_POST['delfile'])) {
@@ -76,6 +94,8 @@
     }
 
     $content = readContentFile($PATH_DIR . $filename);
+    $filesList = implode(", ", getFilesListInDir($PATH_DIR));
+
     ?>
 
     <div class="container">
@@ -83,6 +103,7 @@
         <div class="row">
             <div class="col">
                 <div class="card" style="width: 25rem;">
+                <textarea class="form-control" id="showFiles" rows="2"><?php echo $filesList; ?></textarea>
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <div class="form-group">
                             <label for="testo">Testo da salvare nel file</label>

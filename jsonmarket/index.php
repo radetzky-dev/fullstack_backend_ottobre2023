@@ -24,9 +24,9 @@ function writeContentIntoFile($fileNameWithPath, $content): bool
         return false;
     }
     fclose($fp);
+    echo "File aggiornamto correttamente!<br>";
     return true;
 }
-
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -34,26 +34,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $myFile = readContentFile("data/prodotti.json");
     $strumentiMusicali = json_decode($myFile, true);
 
-    echo "<pre>";
-    // print_r($strumentiMusicali);
-    echo "</pre>";
-
-    echo "<br>DA INSERIRE<br>";
-
-    var_dump($_REQUEST);
-
     $newElem = ['id' => 1, 'marca' => $_REQUEST['marca'], 'name' => $_REQUEST['description'], 'price' => $_REQUEST['price'], 'number' => $_REQUEST['qta']];
+    //var_dump($newElem);
 
     $category = $_REQUEST['tipo'];
     $strumentiMusicali['items'][$category][] = $newElem;
 
+    /*
     echo "<pre>";
     print_r($strumentiMusicali);
     echo "</pre>";
+    */
 
     $jsonString = json_encode($strumentiMusicali);
     $result = writeContentIntoFile("data/prodotti.json", $jsonString);
-    die();
+    //die();
 }
 
 ?>
@@ -87,8 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </thead>
                 <tbody>
                     <?php
-                    $myFile = readContentFile("data/prodotti.json");
-                    $strumentiMusicali = json_decode($myFile, true);
+
+                    if (!isset($strumentiMusicali))
+                    {
+                        $myFile = readContentFile("data/prodotti.json");
+                        $strumentiMusicali = json_decode($myFile, true);
+                    }
+
                     $categorie = [];
 
                     foreach ($strumentiMusicali['items'] as $key => $strumenti) {

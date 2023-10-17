@@ -12,13 +12,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $strumentiMusicali = json_decode($myFile, true);
 
         echo "<pre>";
-        print_r($strumentiMusicali);
+      //  print_r($strumentiMusicali);
         echo "</pre>";
+
+
+        foreach ($strumentiMusicali['items'] as $key => $strumenti) {
+            foreach ($strumenti as $mykey => $strumento) {
+
+                echo $strumento['id'] . ' vs '.$_GET['id'].'<br>';
+                if ($strumento['id']  == $_GET['id'] )
+                {
+                    echo "DA CANCELLARE!!!! $mykey <br>";
+                    echo "<pre>";
+                    print_r($strumento);
+                      echo "</pre>";
+
+                      var_dump($strumenti[$mykey]);
+                }
+            }
+        }
 
         //todo
         /*
-
-
 
         trovare id che voglio cancellare
         eliminare id

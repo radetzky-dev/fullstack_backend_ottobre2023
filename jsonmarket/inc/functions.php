@@ -40,6 +40,6 @@ function writeContentIntoFile($fileNameWithPath, $content): bool
         return false;
     }
     fclose($fp);
-    echo "File aggiornamto correttamente!<br>";
+    //echo "File aggiornamto correttamente!<br>";
     return true;
 }

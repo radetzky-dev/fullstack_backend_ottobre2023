@@ -5,45 +5,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     //  var_dump($_GET);
     if (isset($_GET['op']) && ($_GET['op'] == "delete") && isset($_GET['id'])) {
-        echo "Cancello id... " . $_GET['id'];
+        //echo "Cancello id... " . $_GET['id'];
 
         //carico array
         $myFile = readContentFile($pathData);
         $strumentiMusicali = json_decode($myFile, true);
-
-        echo "<pre>";
-      //  print_r($strumentiMusicali);
-        echo "</pre>";
+        $exit = false;
 
 
         foreach ($strumentiMusicali['items'] as $key => $strumenti) {
             foreach ($strumenti as $mykey => $strumento) {
-
-                echo $strumento['id'] . ' vs '.$_GET['id'].'<br>';
-                if ($strumento['id']  == $_GET['id'] )
-                {
-                    echo "DA CANCELLARE!!!! $mykey <br>";
-                    echo "<pre>";
-                    print_r($strumento);
-                      echo "</pre>";
-
-                      var_dump($strumenti[$mykey]);
+                //   echo $strumento['id'] . ' vs ' . $_GET['id'] . '<br>';
+                if ($strumento['id'] == $_GET['id']) {
+                    // echo "DA CANCELLARE!!!! $key-$mykey <br>";
+                    unset($strumentiMusicali['items'][$key][$mykey]);
+                    $exit = true;
                 }
+                if ($exit) {
+                    break;
+                }
+            }
+            if ($exit) {
+                break;
             }
         }
 
-        //todo
-        /*
-
-        trovare id che voglio cancellare
-        eliminare id
-        salvare json
-        */
-
-     //   die();
-
+        $jsonString = json_encode($strumentiMusicali);
+        $result = writeContentIntoFile($pathData, $jsonString);
     }
-
 }
 
 

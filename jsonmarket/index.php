@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         salvare json
         */
 
-        die();
+     //   die();
 
     }
 
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     foreach ($strumentiMusicali['items'] as $key => $strumenti) {
                         foreach ($strumenti as $strumento) {
 
-                            $delete = "<a href='" . $_SERVER['PHP_SELF'] . "?op=delete&id=" . $strumento['id'] . "'>Elimina</a>";
+                            $delete = "<a href='" . $_SERVER['PHP_SELF'] . "?op=delete&id=" . $strumento['id'] . "' class='btn btn-primary'>Elimina</a>";
 
                             echo '<tr><td>' . $strumento['id'] . '</td><td>' . $strumento['number'] . '</td><td>' . $strumento['marca'] . ' </td><td>' . $strumento['name'] . '</td><td> ' . $strumento['price'] . '</td><td> ' . $key . '</td><td>BUY</td><td>' . $delete . '</td></tr>';
                             $categorie[] = $key;

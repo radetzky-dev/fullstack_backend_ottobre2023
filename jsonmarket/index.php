@@ -2,7 +2,21 @@
 require_once "inc/functions.php";
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $myFile = readContentFile($pathData);
+    $strumentiMusicali = json_decode($myFile, true);
+
+    $newElem = ['id' => uniqid(), 'marca' => $_REQUEST['marca'], 'name' => $_REQUEST['description'], 'price' => $_REQUEST['price'], 'number' => $_REQUEST['qta']];
+
+    $category = $_REQUEST['tipo'];
+    $strumentiMusicali['items'][$category][] = $newElem;
+
+    $jsonString = json_encode($strumentiMusicali);
+    $result = writeContentIntoFile($pathData, $jsonString);
+
+} else {
 
     if (isset($_GET['op']) && isset($_GET['id'])) {
 
@@ -62,22 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
 
     }
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    $myFile = readContentFile($pathData);
-    $strumentiMusicali = json_decode($myFile, true);
-
-    $newElem = ['id' => uniqid(), 'marca' => $_REQUEST['marca'], 'name' => $_REQUEST['description'], 'price' => $_REQUEST['price'], 'number' => $_REQUEST['qta']];
-
-    $category = $_REQUEST['tipo'];
-    $strumentiMusicali['items'][$category][] = $newElem;
-
-    $jsonString = json_encode($strumentiMusicali);
-    $result = writeContentIntoFile($pathData, $jsonString);
-
 }
 
 ?>
@@ -191,9 +189,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     echo $deleteCart;
                                 }
                             }
-
-
-
                             ?>
 
                         </div>

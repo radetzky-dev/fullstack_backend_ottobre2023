@@ -4,10 +4,32 @@ require_once "inc/functions.php";
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     if (isset($_GET['op']) && isset($_GET['id'])) {
-
+        session_start();
         if ($_GET['op'] === 'buy') {
 
-            echo "compra....";
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = array();
+            }
+            $_SESSION['cart'][] = $_GET['id'];
+        }
+
+        if ($_GET['op'] === 'deletecart') {
+
+            //  var_dump($_SESSION['cart']);
+            //  var_dump($_SESSION['cart'][$_GET['id']]);
+
+            foreach ($_SESSION['cart'] as $key => $obj) {
+
+                //  echo $_GET['id'].' vs '.$obj.' '.$key.'<br>';
+                if ($obj == $_GET['id']) {
+                    //echo "cancello";
+                    unset($_SESSION['cart'][$key]);
+                }
+            }
+
+            // var_dump($_SESSION['cart']);
+            // die();
+
         }
 
         if ($_GET['op'] === 'delete') {
@@ -161,6 +183,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Il tuo carrello</h5>
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                foreach ($_SESSION['cart'] as $obj) {
+                                    $deleteCart = "<a href='" . $_SERVER['PHP_SELF'] . "?op=deletecart&id=" . $obj . "'>- $obj</a><br>";
+                                    echo $deleteCart;
+                                }
+                            }
+
+
+
+                            ?>
 
                         </div>
                     </div>

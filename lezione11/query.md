@@ -31,3 +31,9 @@ last_name as Cognome,
 email as Email,
 (SELECT SUM(amount) FROM payment WHERE customer_id = c.customer_id GROUP BY customer_id) as total_amount
 FROM customer as c;
+
+
+select first_name as nome, last_name as cognome, fm.title as titolo from actor as a 
+inner join film_actor f ON a.actor_id = f.actor_id 
+inner join film fm ON f.film_id  = fm.film_id 
+limit 20;

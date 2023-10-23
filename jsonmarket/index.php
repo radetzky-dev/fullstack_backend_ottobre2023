@@ -2,7 +2,6 @@
 require_once "inc/functions.php";
 session_start();
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $myFile = readContentFile($pathData);
@@ -21,11 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_GET['op']) && isset($_GET['id'])) {
 
         if ($_GET['op'] === 'buy') {
-
             if (!isset($_SESSION['cart'])) {
                 $_SESSION['cart'] = array();
             }
-            $_SESSION['cart'][] = $_GET['id'];
+            $_SESSION['cart'][] = [$_GET['id'], $_GET['price'], $_GET['marca']];
         }
 
         if ($_GET['op'] === 'deletecart') {
@@ -35,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             foreach ($_SESSION['cart'] as $key => $obj) {
 
-                //  echo $_GET['id'].' vs '.$obj.' '.$key.'<br>';
-                if ($obj == $_GET['id']) {
-                    //echo "cancello";
+                    // echo $_GET['id'].' vs '.$obj[0].' '.$key.'<br>';
+                if ($obj[0] == $_GET['id']) {
+                   // echo "cancello";
                     unset($_SESSION['cart'][$key]);
                 }
             }
@@ -126,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             $delete = "<a href='" . $_SERVER['PHP_SELF'] . "?op=delete&id=" . $strumento['id'] . "' class='btn btn-primary' onclick='return confirmDelete();'>$deleteIcon</a>";
 
-                            $buy = "<a href='" . $_SERVER['PHP_SELF'] . "?op=buy&id=" . $strumento['id'] . "' class='btn btn-primary'>$cartIcon</a>";
+                            $buy = "<a href='" . $_SERVER['PHP_SELF'] . "?op=buy&id=" . $strumento['id'] . "&price=".$strumento['price'] ."&marca=".$strumento['marca']."' class='btn btn-primary'>$cartIcon</a>";
 
                             echo '<tr><td>' . $strumento['id'] . '</td><td>' . $strumento['number'] . '</td><td>' . strtoupper($strumento['marca']) . ' </td><td>' . $strumento['name'] . '</td><td> ' . $strumento['price'] . '</td><td><strong>' . strtoupper($key) . '</strong></td><td>' . $buy . '</td><td>' . $delete . '</td></tr>';
                             $categorie[] = $key;
@@ -182,13 +180,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Il tuo carrello</h5>
+                            <table>
+                                <thead><th>Marca</th><th>Prezzo</th></thead>
+
                             <?php
+                            $totalCart=0;
                             if (isset($_SESSION['cart'])) {
                                 foreach ($_SESSION['cart'] as $obj) {
-                                    $deleteCart = "<a href='" . $_SERVER['PHP_SELF'] . "?op=deletecart&id=" . $obj . "'>- $obj</a><br>";
+                                   $deleteCart = "<tr><td><a href='" . $_SERVER['PHP_SELF'] . "?op=deletecart&id=" . $obj[0] . "'> ".$obj[2]."</a></td><td>€ ".$obj[1]."</td></tr>";
+                                   $totalCart=  $totalCart+$obj[1];
                                     echo $deleteCart;
                                 }
                             }
+                            echo "<tr><td colspan=2>-----------------------------------</td></tr>";
+                            echo "<tr><td></td><td><b>€ $totalCart</b></td></tr></table>";
                             ?>
 
                         </div>

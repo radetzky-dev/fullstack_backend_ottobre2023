@@ -187,15 +187,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $totalCart=0;
                             if (isset($_SESSION['cart'])) {
                                 foreach ($_SESSION['cart'] as $obj) {
-                                   $deleteCart = "<tr><td><a href='" . $_SERVER['PHP_SELF'] . "?op=deletecart&id=" . $obj[0] . "'> ".$obj[2]."</a></td><td>€ ".$obj[1]."</td></tr>";
+                                   $deleteCart = "<tr><td><a href='" . $_SERVER['PHP_SELF'] . "?op=deletecart&id=" . $obj[0] . "'>$deleteIcon".$obj[2]."</a></td><td>€ ".$obj[1]."</td></tr>";
                                    $totalCart=  $totalCart+$obj[1];
                                     echo $deleteCart;
                                 }
                             }
-                            echo "<tr><td colspan=2>-----------------------------------</td></tr>";
-                            echo "<tr><td></td><td><b>€ $totalCart</b></td></tr></table>";
+                            echo "</table>";
                             ?>
-
+                            <form method="post" action="">
+                                <input type="text" name="amount" id="amount" value="<?php echo $totalCart;?>" readonly>
+                            <button type="submit" class="btn btn-primary">Paga</button>
+                            </form>
                         </div>
                     </div>
                 </div>

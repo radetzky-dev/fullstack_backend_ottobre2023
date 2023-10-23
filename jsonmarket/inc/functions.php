@@ -1,5 +1,4 @@
 <?php
-
 //VARS
 $pathData = "data/prodotti.json";
 

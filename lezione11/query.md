@@ -13,3 +13,15 @@ FILM
  ALTRA QUERY
 
 select ac.actor_id, ac.last_name as cognome, fl.title as titolo from actor as AC inner join film_actor as fa USING (actor_id) INNER JOIN film as fl USING (film_id) where fl.title like "%AFFAIR%";
+
+
+SOLUZIONI ESERCITAZIONE SLIDE 31
+
+select name from category;
+
+select customer_id, first_name, last_name from customer where customer_id = 101;
+
+select customer_id, first_name, last_name from customer where first_name ='victoria' and last_name = 'gibson';
+
+select title, release_year, rental_rate from film where title like 'B%' order by rental_rate;
+

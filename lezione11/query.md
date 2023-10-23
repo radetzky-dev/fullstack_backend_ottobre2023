@@ -25,3 +25,9 @@ select customer_id, first_name, last_name from customer where first_name ='victo
 
 select title, release_year, rental_rate from film where title like 'B%' order by rental_rate;
 
+SELECT
+first_name as Nome,
+last_name as Cognome,
+email as Email,
+(SELECT SUM(amount) FROM payment WHERE customer_id = c.customer_id GROUP BY customer_id) as total_amount
+FROM customer as c;

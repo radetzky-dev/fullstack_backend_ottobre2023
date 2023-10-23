@@ -37,3 +37,22 @@ select first_name as nome, last_name as cognome, fm.title as titolo from actor a
 inner join film_actor f ON a.actor_id = f.actor_id 
 inner join film fm ON f.film_id  = fm.film_id 
 limit 20;
+
+esercizio finale
+
+select name,address,city from customer_list limit 10;
+
+select actorTbl.actor_id,first_name, last_name, count(*) as film  from actor AS actorTbl INNER JOIN film_actor AS filmActorTbl ON actorTbl.actor_id = filmActorTbl.actor_id;
+
+
+select actorTbl.actor_id,first_name, last_name, count(filmActorTbl.film_id) as conto  from actor AS actorTbl INNER JOIN film_actor AS filmActorTbl ON actorTbl.actor_id = filmActorTbl.actor_id;
+
+select count(*) from film_actor where actor_id=1;
+
+select actorTbl.first_name AS Nome, actorTbl.last_name AS Cognome, filmTbl.title as TITOLO, filmTbl.description AS TRAMA from actor AS actorTbl INNER JOIN film_actor AS filmActorTbl ON actorTbl.actor_id = filmActorTbl.actor_id INNER JOIN film AS filmTbl ON filmActorTbl.film_id = filmTbl.film_id where last_name="CRUZ" and first_name="PENELOPE";
+
+select actorTbl.first_name AS Nome, actorTbl.last_name AS Cognome, filmTbl.title as TITOLO from actor AS actorTbl INNER JOIN film_actor AS filmActorTbl ON actorTbl.actor_id = filmActorTbl.actor_id INNER JOIN film AS filmTbl ON filmActorTbl.film_id = filmTbl.film_id where last_name="CRUZ" and first_name="PENELOPE";
+
+
+
+

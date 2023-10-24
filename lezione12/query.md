@@ -8,3 +8,10 @@
 SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id where title like "%din%" and last_name like "%Cruz%" limit 20;
 
 SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id where title like "%ANAC%" and last_name like "%M%" limit 20;
+
+SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id where description like "%mad%" limit 20;
+
+SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id where (last_name="CRUZ" or last_name="DAVIS") and description like "%dentist%" limit 30;
+
+
+SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE, filmTbl.release_year as "ANNO USCITA" from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id where (last_name="CRUZ" or last_name="DAVIS") and description like "%mad%";

@@ -45,7 +45,79 @@ INNER JOIN country as countryTBL ON cityTBL.country_id= countryTBL.country_id
 where custaddress.district like "%california%" or city like "York"
 limit 20;
 
+EXPLAIN
 SELECT first_name as NOME, last_name AS COGNOME, custaddress.address as INDIRIZZO, city as CITTA, custaddress.district as STATO, country as NAZIONE from customer as custTBL INNER JOIN address as custaddress ON custTBL.address_id = custaddress.address_id INNER JOIN city as cityTBL ON custaddress.city_id = cityTBL.city_id
 INNER JOIN country as countryTBL ON cityTBL.country_id= countryTBL.country_id 
 where custaddress.district like "%england%" and custTBL.active =1 and custTBL.customer_id !=477
 limit 20;
+
+EXPLAIN
+
+EXPLAIN
+SELECT first_name as NOME, last_name AS COGNOME, city as CITTA, country as PAESE from customer as custTBL INNER JOIN address as custaddress ON custTBL.address_id = custaddress.address_id INNER JOIN city as cityTBL ON custaddress.city_id = cityTBL.city_id INNER JOIN country as countryTBL ON cityTBL.country_id= countryTBL.country_id where countryTBL.country_id = 34;
+
+
+Esercizio
+
+
+StudentTBL (studenti)
+PK id 1022
+name ecc
+advisor_id -> FK id_advisor (-> Advisor name ecc )
+class1 -> FK id_classes (->room)
+class2 -> FK id_classes (->room)
+class3 -> FK id_classes (->room)
+
+AdvisorTBL (Professori)
+PK id
+advisor Jones
+adv_room ->FK id_room
+
+RoomsTBL (Sale professori)
+PK id_room 412
+
+ClassesTBL (Aule)
+PK id
+room 101-07
+
+Comandi da lanciare:
+create database students;
+
+use students;
+
+create table classes (id INT PRIMARY KEY AUTO_INCREMENT, room varchar(10));
+
+create table rooms (id INT PRIMARY KEY AUTO_INCREMENT);
+
+create table advisor (id INT PRIMARY KEY AUTO_INCREMENT, advisor_name varchar(30), adv_room INT NOT NULL,
+  CONSTRAINT `fk_advisor_rooms`
+    FOREIGN KEY (adv_room) REFERENCES rooms (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+);
+
+create table student 
+(
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    name varchar(30), 
+    advisor_id INT NOT NULL,
+    class1 INT NOT NULL,
+    class2 INT NOT NULL,
+    class3 INT NOT NULL,
+  CONSTRAINT `fk_student_advisor`
+    FOREIGN KEY (advisor_id) REFERENCES advisor (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT,
+      CONSTRAINT `fk_student_class1`
+    FOREIGN KEY (class1) REFERENCES classes (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT,
+          CONSTRAINT `fk_student_class2`
+    FOREIGN KEY (class2) REFERENCES classes (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT,
+          CONSTRAINT `fk_student_class3`
+    FOREIGN KEY (class3) REFERENCES classes (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+);

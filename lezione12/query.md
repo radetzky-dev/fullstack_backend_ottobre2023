@@ -206,6 +206,11 @@ ALTER table addresses DROP COLUMN email;
          customer_id INT NOT NULL
     )
 
+    alter table orders ADD CONSTRAINT `fk_orders_customers`
+    FOREIGN KEY (customer_id) REFERENCES customers (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT;
+
     create table order_details(
         id INT PRIMARY KEY AUTO_INCREMENT, 
         product_id INT NOT NULL,

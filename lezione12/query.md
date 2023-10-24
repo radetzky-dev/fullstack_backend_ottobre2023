@@ -183,6 +183,10 @@ create table addresses (
 
 ALTER table addresses MODIFY city_id INT NOT NULL;
 
+ALTER table addresses DROP COLUMN phone;
+ALTER table addresses DROP COLUMN email;
+
+
     create table customers (
     id INT PRIMARY KEY AUTO_INCREMENT, 
     name varchar(30) NOT NULL,

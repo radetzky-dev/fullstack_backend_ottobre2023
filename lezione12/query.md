@@ -15,3 +15,18 @@ SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS
 
 
 SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE, filmTbl.release_year as "ANNO USCITA" from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id where (last_name="CRUZ" or last_name="DAVIS") and description like "%mad%";
+
+3a
+SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE, catTbl.name as CATEGORIA  from actor as actorTbl 
+INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id 
+INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id
+INNER JOIN film_category as filmCatTbl ON filmTbl.film_id= filmCatTbl.film_id
+INNER JOIN category as catTbl ON filmCatTbl.category_id = catTbl.category_id
+where catTbl.name != "Action"
+limit 20;
+
+SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE, catTbl.name as CATEGORIA  from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id INNER JOIN film_category as filmCatTbl ON filmTbl.film_id= filmCatTbl.film_id INNER JOIN category as catTbl ON filmCatTbl.category_id = catTbl.category_id where catTbl.name != "Action" and catTbl.name !="Animation"  limit 30;
+
+SELECT first_name as NOME, last_name AS COGNOME, title AS TITOLO, description AS DESCRIZIONE, catTbl.name as CATEGORIA  from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id INNER JOIN film_category as filmCatTbl ON filmTbl.film_id= filmCatTbl.film_id INNER JOIN category as catTbl ON filmCatTbl.category_id = catTbl.category_id where catTbl.name IN ( "Action","Animation", "Children") and description like "%Canadian%" limit 50;
+
+SELECT DISTINCT title AS TITOLO, description AS DESCRIZIONE, catTbl.name as CATEGORIA  from actor as actorTbl  INNER JOIN film_actor as filmactorTbl ON actorTbl.actor_id = filmactorTbl.actor_id  INNER JOIN film as filmTbl ON filmactorTbl.film_id= filmTbl.film_id INNER JOIN film_category as filmCatTbl ON filmTbl.film_id= filmCatTbl.film_id INNER JOIN category as catTbl ON filmCatTbl.category_id = catTbl.category_id where catTbl.name IN ( "Action","Animation", "Children") and description like "%Canadian%" limit 50;

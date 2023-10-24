@@ -121,3 +121,104 @@ create table student
     ON DELETE CASCADE
     ON UPDATE RESTRICT
 );
+
+
+**** Disegno nostro DB ****
+categories - le categorie (chitarre, batterie...)
+brands
+products (elenco prodotti)
+city
+address
+
+customers (clienti)
+orders (ordini)
+admin (login /può inserire e cancellare prodotti DELETE - inserimenti non vengono mostrati agli altri)
+
+COMANDI
+create database JsonMusicMarket;
+use JsonMusicMarket;
+
+create table categories (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(35));
+
+ALTER table categories MODIFY name varchar(35) NOT NULL;
+
+create table brands (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(50));
+
+ALTER table brands MODIFY name varchar(50) NOT NULL;
+
+create table products(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name varchar(50) NOT NULL,
+price decimal(10,2) NOT NULL,
+quantity tinyint(3) NOT NULL,
+description varchar(200),
+photo varchar(200),
+category_id INT NOT NULL,
+brand_id INT NOT NULL,
+last_update timestamp ON UPDATE CURRENT_TIMESTAMP(),
+  CONSTRAINT `fk_products_categories`
+    FOREIGN KEY (category_id) REFERENCES categories (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT,
+     CONSTRAINT `fk_products_brands`
+    FOREIGN KEY (brand_id) REFERENCES brands (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+);
+
+
+create table cities (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(50) NOT NULL);
+
+create table addresses (
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    indirizzo varchar(100) NOT NULL,
+    city_id INT,
+    phone varchar(20),
+    email varchar(40),
+         CONSTRAINT `fk_adresses_cities`
+    FOREIGN KEY (city_id) REFERENCES cities (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+    );
+
+ALTER table addresses MODIFY city_id INT NOT NULL;
+
+    create table customers (
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    name varchar(30) NOT NULL,
+    surname varchar(50) NOT NULL,
+    address_id INT NOT NULL,
+
+         CONSTRAINT `fk_customers_addresses`
+    FOREIGN KEY (address_id) REFERENCES addresses (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+    );
+
+
+    create table orders (
+         id INT PRIMARY KEY AUTO_INCREMENT, 
+         date DATETIME NOT NULL,
+         customer_id INT NOT NULL
+    )
+
+    create table order_details(
+        id INT PRIMARY KEY AUTO_INCREMENT, 
+        product_id INT NOT NULL,
+        quantity tinyint(3) NOT NULL,
+        price decimal(10,2) NOT NULL,
+        order_id INT NOT NULL,
+        last_update timestamp ON UPDATE CURRENT_TIMESTAMP(),
+             CONSTRAINT `fk_orderdetails_brands`
+    FOREIGN KEY (product_id) REFERENCES products (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT,
+                 CONSTRAINT `fk_orderdetails_orders`
+    FOREIGN KEY (order_id) REFERENCES orders (id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+    );
+
+
+
+    

@@ -78,3 +78,26 @@ CREATE VIEW classi_studenti_professori AS
    INNER JOIN classes ON student.class1 = classes.id; 
 
    select * from classi_studenti_professori;
+
+
+   //JSONMUSICAMARKET
+
+   update products SET last_update =NOW() where id=2;
+
+
+     SELECT orders.date as DATA, UCASE(CONCAT (customers.name,' ',customers.surname)) as CLIENTE , orders.id AS "NUMERO ORDINE", addresses.indirizzo AS INDIRIZZO, cities.name AS CITTA
+    ->       from orders  
+    ->    INNER JOIN customers ON orders.customer_id = customers.id
+    ->       INNER JOIN addresses ON customers.address_id = addresses.id
+    ->     INNER JOIN cities ON addresses.city_id = cities.id
+    ->    ;
+
+CREATE VIEW totale_ordini_list AS 
+      SELECT DISTINCT orders.id AS "NUMERO ORDINE", orders.date as DATA, UCASE(CONCAT (customers.name,' ',customers.surname)) as CLIENTE , addresses.indirizzo AS INDIRIZZO, cities.name AS CITTA, (select sum(price) from order_details where order_id=orders.id) AS TOTALE
+      from orders  
+   INNER JOIN customers ON orders.customer_id = customers.id
+      INNER JOIN addresses ON customers.address_id = addresses.id
+    INNER JOIN cities ON addresses.city_id = cities.id
+    INNER JOIN order_details ON orders.id = order_details.order_id;
+
+     insert into order_details (product_id,quantity, price, order_id,last_update) VALUES (3,2,100.4,2,NOW());

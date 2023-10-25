@@ -50,3 +50,13 @@ INSERT INTO `film`( `title`, `description`, `release_year`, `language_id`, `orig
  insert into film_category (film_id,category_id) VALUES (1004,1);
  insert into film_category (film_id,category_id) VALUES (1004,7);
  select title,category from film_list where title like "%NON%";
+
+ REPLACE
+
+ replace into advisor VALUES (1, "Gino Verdi", 400);
+
+ insert into advisor (id,advisor_name,adv_room) values (3,"Mario Rossi",502) ON DUPLICATE KEY UPDATE advisor_name="Mario Rossi";
+
+ LOAD file
+
+ LOAD DATA LOCAL INFILE '/Users/radeschi/Downloads/carica.dat' INTO TABLE t1 FIELDS TERMINATED BY ',' (a,b) SET c=a+b;

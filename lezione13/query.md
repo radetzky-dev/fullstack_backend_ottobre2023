@@ -24,3 +24,12 @@ DELETE
 
 use students;
  delete from rooms where id=501;
+
+ TRUNCATE
+
+ create table prova (ID INT, NAME VARCHAR(30));
+ insert into prova (ID,NAME) VALUES (1,"a");
+ insert into prova (ID,NAME) VALUES (3,"c");
+
+ TRUNCATE prova;
+

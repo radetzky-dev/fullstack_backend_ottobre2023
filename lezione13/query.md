@@ -33,3 +33,20 @@ use students;
 
  TRUNCATE prova;
 
+
+UPDATE
+
+update student SET name="Mario" where name="Jimmy";
+ update student SET name="Maria" where name LIKE "%Deb%";
+ update student SET name="Kosa" where class1=2 and class2=4;
+
+use sakila;
+update actor SET last_name= UPPER("Cruso") where first_name = "RALPH" and last_name like "%cruz";
+
+ESERCIZIO
+
+INSERT INTO `film`( `title`, `description`, `release_year`, `language_id`, `original_language_id`, `rental_duration`, `rental_rate`, `length`, `replacement_cost`, `rating`, `special_features`) VALUES('NON CI RESTA CHE PIANGERE',"As student at the United States Navy's","1986","1","1","6","4.9","110",20.99,"G","Trailers,Commentaries");
+
+ insert into film_category (film_id,category_id) VALUES (1004,1);
+ insert into film_category (film_id,category_id) VALUES (1004,7);
+ select title,category from film_list where title like "%NON%";

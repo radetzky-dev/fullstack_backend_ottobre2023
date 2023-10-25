@@ -58,5 +58,6 @@ INSERT INTO `film`( `title`, `description`, `release_year`, `language_id`, `orig
  insert into advisor (id,advisor_name,adv_room) values (3,"Mario Rossi",502) ON DUPLICATE KEY UPDATE advisor_name="Mario Rossi";
 
  LOAD file
+ 
 CREATE TABLE t1 (a int, b int, c int, d int, PRIMARY KEY (a));
  LOAD DATA LOCAL INFILE '/Users/radeschi/Downloads/carica.dat' INTO TABLE t1 FIELDS TERMINATED BY ',' (a,b) SET c=a+b;

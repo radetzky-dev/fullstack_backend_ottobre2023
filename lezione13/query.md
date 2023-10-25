@@ -70,6 +70,8 @@ CREATE TABLE t1 (a int, b int, c int, d int, PRIMARY KEY (a));
 
  VISTA
 
+ insert into student (name,advisor_id,class1,class2,class3) VALUES ('Jimmy',3,4,3,2);
+
 CREATE VIEW classi_studenti_professori AS 
    SELECT student.name as STUDENTE, advisor.advisor_name AS PROFESSORE, classes.room as CLASSE1 from student  
    INNER JOIN advisor ON student.advisor_id = advisor.id 

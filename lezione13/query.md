@@ -66,3 +66,13 @@ CREATE TABLE t1 (a int, b int, c int, d int, PRIMARY KEY (a));
  EXPORT
 
  select *  INTO OUTFILE '/Users/radeschi/Downloads/export.dat' FIELDS TERMINATED BY ',' FROM t1;
+
+
+ VISTA
+
+CREATE VIEW classi_studenti_professori AS 
+   SELECT student.name as STUDENTE, advisor.advisor_name AS PROFESSORE, classes.room as CLASSE1 from student  
+   INNER JOIN advisor ON student.advisor_id = advisor.id 
+   INNER JOIN classes ON student.class1 = classes.id; 
+
+   select * from classi_studenti_professori;

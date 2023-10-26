@@ -15,7 +15,7 @@ if ($connection) {
         echo $record['name'] . ' ' . $record['advisor_id'] . '<br>';
     }
 
-    $sth->execute(['param1' => '%k%', 'param2' => 2]);
+    $sth->execute([ 'param2' => 2, 'param1' => '%k%']);
     $records = $sth->fetchAll();
     foreach ($records as $record) {
         echo $record['name'] . ' ' . $record['advisor_id'] . '<br>';

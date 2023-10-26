@@ -33,10 +33,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $arrayQry[] = $_POST["class2"];
             $arrayQry[] = $_POST["class3"];
             $sth->execute($arrayQry); //TODO check constraint
-          //  $sth->debugDumpParams(); //debug
+            //  $sth->debugDumpParams(); //debug
             echo "Inserito con successo!<br>";
         }
     }
+
+    if (isset($_POST["operation"]) && ($_POST["operation"] == 'insertok')) {
+        $connection = connectDb($config);
+        if ($connection) {
+            $insertQry = "INSERT INTO student (name,advisor_id,class1,class2,class3) VALUES (" . $_POST["name"] . "," . $_POST["id_advisor"] . "," . $_POST["class1"] . "," . $_POST["class2"] . "," . $_POST["class3"] . ")";
+            try {
+                $connection->beginTransaction();
+                $connection->exec($insertQry);
+                $connection->commit();
+                echo "Inserito con successo!<br>";
+            } catch (PDOException $e) {
+                $connection->rollBack();
+                echo "Errore nell'inserimento<br>";
+            }
+        }
+    }
+
+    /*
+    $dbh->beginTransaction();
+
+$sth = $dbh->exec("DROP TABLE fruit");
+$sth = $dbh->exec("UPDATE dessert
+    SET name = 'hamburger'");
+
+$dbh->rollBack();
+    */
 }
 
 ?>
@@ -54,7 +80,7 @@ foreach ($records as $record) {
 }
 ?>
 
-<h4>Inserisci studente</h4>
+<h4>Inserisci studente NON SICURO</h4>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     Nome <input type="text" name="name" id="name">
     id_advisor <input type="number" name="id_advisor" id="id_advisor">
@@ -62,5 +88,16 @@ foreach ($records as $record) {
     class2 <input type="number" name="class2" id="class2">
     class3 <input type="number" name="class3" id="class3">
     <input type="text" name="operation" id="operation" value="insert" hidden>
+    <button type="submit" class="btn btn-primary">Inserisci</button>
+</form>
+
+<h4>Inserisci studente SICURO</h4>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    Nome <input type="text" name="name" id="name">
+    id_advisor <input type="number" name="id_advisor" id="id_advisor">
+    class1 <input type="number" name="class1" id="class1">
+    class2 <input type="number" name="class2" id="class2">
+    class3 <input type="number" name="class3" id="class3">
+    <input type="text" name="operation" id="operation" value="insertok" hidden>
     <button type="submit" class="btn btn-primary">Inserisci</button>
 </form>

@@ -1,21 +1,19 @@
 <?php
 require_once "inc/connection_data.php";
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    var_dump($_POST);
+}
+
 $connection = connectDb($config);
 
 if ($connection) {
     echo "Connessione avvenuta con successo!<br>";
     //TUTTI I VALORI
-    $sql = "SELECT * FROM student WHERE name LIKE :param1 and advisor_id=:param2";
+    $sql = "SELECT * FROM student WHERE name LIKE :param1";
 
     $sth = $connection->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
-    $sth->execute(array('param1' => '%mm%', 'param2' => 3));
-    $records = $sth->fetchAll();
-    foreach ($records as $record) {
-        echo $record['name'] . ' ' . $record['advisor_id'] . '<br>';
-    }
-
-    $sth->execute(['param1' => '%k%', 'param2' => 2]);
+    $sth->execute(array('param1' => '%mm%'));
     $records = $sth->fetchAll();
     foreach ($records as $record) {
         echo $record['name'] . ' ' . $record['advisor_id'] . '<br>';
@@ -29,3 +27,8 @@ if ($connection) {
 } else {
     echo "Impossibile connettersi al DB!<br>";
 }
+?>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    Cerca nome studente <input type="text" name="find" id="find" >
+    <button type="submit" class="btn btn-primary">cerca</button>
+</form>

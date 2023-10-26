@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                             echo "</table>";
                             ?>
-                            <form method="post" action="">
+                            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="text" name="amount" id="amount" value="<?php echo $totalCart;?>" readonly>
                             <button type="submit" class="btn btn-primary">Paga</button>
                             </form>

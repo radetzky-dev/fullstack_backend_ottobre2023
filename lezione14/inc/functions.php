@@ -23,17 +23,19 @@ function findStudent(string $studentName, stdClass $config): array
     }
 }
 
+
 /**
- * showStudents
+ * showTable
  *
  * @param  mixed $config
+ * @param  mixed $tableName
  * @return array
  */
-function showStudents(stdClass $config): array
+function showTableContent(stdClass $config, string $tableName): array
 {
     $connection = connectDb($config);
     if ($connection) {
-        $sql = "SELECT * FROM student";
+        $sql = "SELECT * FROM $tableName";
         $sth = $connection->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
         $sth->execute();
         $records = $sth->fetchAll();

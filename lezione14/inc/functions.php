@@ -22,3 +22,27 @@ function findStudent(string $studentName, stdClass $config): array
         return [];
     }
 }
+
+/**
+ * showStudents
+ *
+ * @param  mixed $config
+ * @return array
+ */
+function showStudents(stdClass $config): array
+{
+    $connection = connectDb($config);
+    if ($connection) {
+        $sql = "SELECT * FROM student";
+        $sth = $connection->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+        $sth->execute();
+        $records = $sth->fetchAll();
+        $connection = closeDbConnection($connection);
+        return $records;
+    } else {
+        echo "Impossibile connettersi al DB!<br>";
+        return [];
+    }
+}
+
+//TODO sistemare doppioni

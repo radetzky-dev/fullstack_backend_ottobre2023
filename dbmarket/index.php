@@ -43,10 +43,13 @@ session_start();
                     $connection = connectToDB($config);
 
                     if ($connection) {
+                        $brands= getNamesFromId($connection,"brands");
+                        $categories = getNamesFromId($connection,"categories");
+
                         $sql = "SELECT * FROM products";
-                        $result = $connection->query($sql);
+                        $result = runQuery($sql, $connection);
                         while ($row = $result->fetch_assoc()) {
-                            echo '<tr><td>'.$row["id"].'</td><td>'.$row["quantity"].'</td><td>'.$row["name"].'</td><td>'.$row["brand_id"] . '</td><td> ' . $row["description"] . '</td><td>'.$row["price"].'</td><td>'.$row["category_id"].'</td><td>BUY</td><td>Modify</td><td>DEL</td></tr>';
+                            echo '<tr><td>' . $row["id"] . '</td><td>' . $row["quantity"] . '</td><td>' . $row["name"] . '</td><td>' . $brands[$row["brand_id"]] . '</td><td> ' . $row["description"] . '</td><td>' . $row["price"] . '</td><td>' . $categories[$row["category_id"]] . '</td><td>BUY</td><td>Modify</td><td>DEL</td></tr>';
                         }
                         closeConnection($connection);
                     }

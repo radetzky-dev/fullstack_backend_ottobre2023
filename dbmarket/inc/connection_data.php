@@ -16,6 +16,12 @@ $config->user = $user;
 $config->password = $password;
 $config->options = [];
 
+/**
+ * connectToDB
+ *
+ * @param  mixed $config
+ * @return mysqli
+ */
 function connectToDB(stdClass $config): mysqli|null
 {
     try {
@@ -29,8 +35,27 @@ function connectToDB(stdClass $config): mysqli|null
     }
 }
 
+/**
+ * closeConnection
+ *
+ * @param  mixed $connection
+ * @return void
+ */
 function closeConnection(mysqli $connection): void
 {
     $connection->close();
     //echo "Connessione chiusa<br>";
+}
+
+
+/**
+ * runQuery
+ *
+ * @param  mixed $sql
+ * @param  mixed $connection
+ * @return mysqli_result
+ */
+function runQuery(string $sql, mysqli $connection) :mysqli_result
+{
+    return $connection->query($sql);
 }

@@ -34,5 +34,25 @@ if ($connection) {
     }
 
 
+    echo "RISULTATI MULTIQUERY<br><hr>";
+    $query = "SELECT CURRENT_USER();";
+    $query .= "SELECT STUDENTE FROM classi_studenti_professori ORDER BY STUDENTE LIMIT 5, 3";
+
+    /* execute multi query */
+    $connection->multi_query($query);
+    do {
+        /* store the result set in PHP */
+        if ($result = $connection->store_result()) {
+            while ($row = $result->fetch_row()) {
+                printf("%s\n", $row[0]);
+            }
+        }
+        /* print divider */
+        if ($connection->more_results()) {
+            printf("-----------------\n");
+        }
+    } while ($connection->next_result());
+
+
     closeConnection($connection);
 }

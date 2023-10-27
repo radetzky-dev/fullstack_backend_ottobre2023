@@ -3,6 +3,14 @@ require_once "inc/functions.php";
 require_once "inc/connection_data.php";
 session_start();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if ((isset($_POST['operation'])) && ($_POST['operation'] == "insertproduct")) {
+
+        var_dump($_POST);
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

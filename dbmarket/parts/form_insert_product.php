@@ -7,6 +7,9 @@
                     <div class="form-group">
                         <label for="testo">Qta</label>
                         <input type="numeric" class="form-control" id="qta" name="qta" placeholder="1" required>
+                        <label for="testo">Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            placeholder="nome prodotto" required>
                         <label for="testo">Marca</label>
                         <select name="marca" id="marca" class="form-control">
                             <?php
@@ -27,7 +30,6 @@
                             }
                             ?>
                         </select>
-
                     </div>
                     <input type="text" id="operation" name="operation" value="insertproduct" hidden />
                     <button type="submit" class="btn btn-primary">

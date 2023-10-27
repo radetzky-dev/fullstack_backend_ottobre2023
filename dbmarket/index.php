@@ -3,13 +3,27 @@ require_once "inc/functions.php";
 require_once "inc/connection_data.php";
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if ((isset($_POST['operation'])) && ($_POST['operation'] == "insertproduct")) {
+if (($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['operation'])) && ($_POST['operation'] == "insertproduct")) {
+    $connection = connectToDB($config);
+    if ($connection) {
+        $sql = "insert into products (name,price,quantity,description,category_id,brand_id) VALUES (?,?,?,?,?,?)";
+        $stmt = $connection->prepare($sql);
 
-        var_dump($_POST);
+        $stmt->execute([
+            $_POST['name'],
+            $_POST['price'],
+            $_POST['qta'],
+            $_POST['description'],
+            $_POST['tipo'],
+            $_POST['marca'],
+        ]);
+
+        echo "Inserimento avvenuto con successo!<br>";
+        closeConnection($connection);
     }
 }
+
 
 ?>
 <!DOCTYPE html>

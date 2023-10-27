@@ -78,20 +78,70 @@ echo 'Sono ' . $spinacio->getName() . ' edibile ' . $spinacio->isEdible() . ' co
 echo Spinach::SAPORE;
 echo "<hr>";
 
-if($cicoria instanceof Vegetable) {
-  echo "The object is Vegetable<br>";
+if ($cicoria instanceof Vegetable) {
+    echo "The object is Vegetable<br>";
 
 }
 
 // The object is also an instance of the class it is derived from
-if($spinacio instanceof Spinach) {
-  echo "The object is Spinach Cucinato?".$spinacio->isCooked()."<br>";
+if ($spinacio instanceof Spinach) {
+    echo "The object is Spinach Cucinato?" . $spinacio->isCooked() . "<br>";
 
 }
 
-if($spinacio instanceof Person) {
+if ($spinacio instanceof Person) {
     echo "The object is Vegetable<br>";
-  } else
-  {
+} else {
     echo "Non è di tipo Person<br>";
-  }
+}
+
+echo "<hr>";
+class Fruit
+{
+    public $name;
+    public $color;
+
+    function __construct($name, $color)
+    {
+        $this->name = $name;
+        $this->color = $color;
+    }
+
+    public function tipo()
+    {
+        echo "frutto<br>";
+    }
+
+    function __destruct()
+    {
+        echo "The fruit is {$this->name} and the color is {$this->color}.";
+    }
+}
+
+$apple = new Fruit("Apple", "red");
+$apple->tipo();
+$apple->tipo();
+$apple->tipo();
+
+
+$sum = function ($val1, $val2) {
+    return $val1 + $val2;
+};
+
+echo $sum(3, 4); // Output: 7
+
+echo "<hr>";
+
+$myObject = new class {
+    private $a;
+    public function set($a)
+    {
+        $this->a = $a;
+    }
+    public function get()
+    {
+        return $this->a;
+    }
+};
+$myObject->set(54);
+echo $myObject->get(),'<br>'; // 54

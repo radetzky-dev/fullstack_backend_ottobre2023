@@ -19,7 +19,7 @@ https://github.com/serbanghita/Mobile-Detect
 Creare tabelle
 
 CREATE TABLE `books` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
   `title` varchar(255) NOT NULL,
   `booklink` varchar(255) NOT NULL,
   `cover` varchar(255) DEFAULT NULL,

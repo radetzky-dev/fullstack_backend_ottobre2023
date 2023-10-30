@@ -1,0 +1,6 @@
+{
+    "require": {
+        "mobiledetect/mobiledetectlib": "^4.8",
+        "ua-parser/uap-php": "^3.9"
+    }
+}

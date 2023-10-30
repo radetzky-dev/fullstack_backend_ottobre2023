@@ -1,0 +1,4 @@
+2023-10-30,12:22:32,::1,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36,
+2023-10-30,12:23:39,::1,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36,iomichiamochico
+2023-10-30,12:26:11,::1,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36,friends
+2023-10-30,12:32:04,::1,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36,http://localhost/musa/backendottobre2023/linkstats/linkdachiamare.php,libro=checosavisietepersi,checosavisietepersi

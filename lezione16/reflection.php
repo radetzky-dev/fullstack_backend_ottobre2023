@@ -22,7 +22,7 @@ interface Person
     // costanti
     const COSTANTE = "valore";
 
-    const PROVA ="prova di costante";
+    const PROVA = "prova di costante";
     // definizione dei metodi
     public function getName();
     public function setName($name, $lastname);
@@ -68,3 +68,69 @@ foreach ($constants as $name => $value) {
 if ($reflection->hasMethod("setName")) {
     echo "<br /><br />Il metodo setName() esiste per Student";
 }
+
+echo "<hr>";
+class MiaClasse
+{
+    public function name()
+    {
+        echo "My name is ", get_class($this), "<br>";
+    }
+}
+
+// create an object
+$bar = new MiaClasse();
+
+// external call
+echo "Its name is ", get_class($bar), "<br>";
+
+// internal call
+$bar->name();
+
+echo "<hr>";
+function getStudents($obj)
+{
+    if (!is_object($obj)) {
+
+        return false;
+    }
+
+    return $obj->students;
+}
+
+// Declare a new class instance and fill up
+// some values
+$obj = new stdClass();
+$obj->students = array('Kalle', 'Ross', 'Felipe');
+
+var_dump(getStudents(null));
+echo "<br>";
+var_dump(getStudents($obj));
+
+
+echo "<hr>";
+
+class Foo
+{
+    private $a;
+    public $b = 1;
+    public $c;
+    private $d;
+    static $e = "prova";
+
+    public function test()
+    {
+        echo "da dentro<br>";
+        var_dump(get_object_vars($this));
+    }
+}
+
+$test = new Foo;
+echo "da fuori<br>";
+var_dump(get_object_vars($test));
+echo "<hr>";
+
+$test->test();
+
+echo "<hr>";
+echo Foo::$e;

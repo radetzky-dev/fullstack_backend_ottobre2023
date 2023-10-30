@@ -2,6 +2,8 @@
 require_once "inc/functions.php";
 session_start();
 
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $myFile = readContentFile($pathData);
@@ -14,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $jsonString = json_encode($strumentiMusicali);
     $result = writeContentIntoFile($pathData, $jsonString);
+
+
 
 } else {
 
@@ -210,6 +214,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return confirm("Sei sicuro di voler cancellare?");
         };
     </script>
+
+    <?php
+    $var ="Prova";
+    echo "<script>var mario = '$var'; console.log(mario); </script>";
+    ?>
 
 </body>
 

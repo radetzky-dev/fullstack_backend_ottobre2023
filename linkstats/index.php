@@ -45,12 +45,19 @@ $detect->setUserAgent($ua);
 $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 echo "Device $deviceType<br>";
 
-die();
+echo "IP ".$_SERVER['REMOTE_ADDR']."<br>";
+echo "REF ".$_SERVER['HTTP_REFERER']."<br>";
+echo "REF ".$_SERVER['QUERY_STRING']."<br>";
+echo "Book ".$bookTitle."<br>";
 
-$callerInfo = $_SERVER['REMOTE_ADDR'] . "," . $_SERVER['HTTP_USER_AGENT'].",".$_SERVER['HTTP_REFERER'].",".$_SERVER['QUERY_STRING'];
-$date = date('Y-m-d'); // Ottiene la data corrente nel formato "YYYY-MM-DD"
+$date = date('d-m-Y'); // Ottiene la data corrente nel formato "YYYY-MM-DD"
 $time = date('H:i:s'); // Ottiene l'ora corrente nel formato "HH:MM:SS"
-$data = $date . "," . $time . "," . $callerInfo.','.$bookTitle."\n";
+
+echo "Date ".$date."<br>";
+echo "Time ".$time."<br>";
+
+
+die();
 $file = fopen("link_info.txt", "a");
 fwrite($file, $data);
 fclose($file);

@@ -22,16 +22,20 @@ Route::get('/saluti', function () {
     return "Ciao, benvenuto";
 });
 
-Route::get('/prova', function () {
-    return "<b>Questa è una prova</b>";
-});
+Route::redirect('/prova', 'saluti');
 
 Route::get('/test', [Controller::class, 'testRoute']);
 
-Route::post('/rispondi', function () {
-    echo "Richiesta arrivata in POST!<br>";
-    var_dump($_POST);
+Route::match(['get', 'post'], '/rispondi', function () {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        echo "Richiesta arrivata in POST!<br>";
+        var_dump($_POST);
+    } else {
+        echo "Richiesta arrivata via GET";
+    }
 });
+
+
 
 Route::any('/tutto', function () {
     echo "Richiesta arrivata in qualsiasi modo!<br>";

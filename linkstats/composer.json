@@ -1,6 +1,7 @@
 {
     "require": {
         "mobiledetect/mobiledetectlib": "^4.8",
-        "ua-parser/uap-php": "^3.9"
+        "ua-parser/uap-php": "^3.9",
+        "nesbot/carbon": "^2.71"
     }
 }

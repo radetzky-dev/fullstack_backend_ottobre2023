@@ -18,8 +18,7 @@ class Controller extends BaseController
 
     public function saluta(Request $request)
     {
-        var_dump($request);
-       // echo "Ciao ".$request->name."<br>";
+            echo "Saluta";
     }
 
 }

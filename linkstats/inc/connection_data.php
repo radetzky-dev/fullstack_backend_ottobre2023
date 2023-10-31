@@ -48,6 +48,7 @@ function closeConnection(mysqli $connection): void
 }
 
 
+
 /**
  * runQuery
  *
@@ -55,7 +56,7 @@ function closeConnection(mysqli $connection): void
  * @param  mixed $connection
  * @return mysqli_result
  */
-function runQuery(string $sql, mysqli $connection) :mysqli_result
+function runQuery(string $sql, mysqli $connection) :mysqli_result | bool
 {
     return $connection->query($sql);
 }

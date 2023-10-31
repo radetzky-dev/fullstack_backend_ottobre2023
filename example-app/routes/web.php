@@ -27,3 +27,8 @@ Route::get('/prova', function () {
 });
 
 Route::get('/test', [Controller::class, 'testRoute']);
+
+Route::post('/rispondi', function() {
+    echo "Richiesta arrivata in POST!<br>";
+    var_dump($_POST);
+});

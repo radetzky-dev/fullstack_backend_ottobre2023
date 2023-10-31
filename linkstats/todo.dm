@@ -21,7 +21,7 @@ Creare tabelle
 CREATE TABLE `books` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
   `title` varchar(255) NOT NULL,
-  `booklink` varchar(255) NOT NULL,
+  `booklink` TEXT NOT NULL,
   `cover` varchar(255) DEFAULT NULL,
   `create_time` datetime DEFAULT current_timestamp() COMMENT 'Create Time',
   PRIMARY KEY (`id`)

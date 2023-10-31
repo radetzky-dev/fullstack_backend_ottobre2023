@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/saluti', function () {
+    return "Ciao, benvenuto";
+});
+
+Route::get('/prova', function () {
+    return "<b>Questa è una prova</b>";
+});
+
+Route::get('/test', [Controller::class, 'testRoute']);

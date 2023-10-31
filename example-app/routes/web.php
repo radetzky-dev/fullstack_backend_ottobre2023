@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/provavista', function () {
+    return view('prova', ["name" => "Mario"]);
+});
+
+
 Route::get('/saluti', function () {
     return "Ciao, benvenuto";
 });

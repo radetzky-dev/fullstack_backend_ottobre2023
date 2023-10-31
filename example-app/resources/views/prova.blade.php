@@ -10,7 +10,7 @@
 <body class="antialiased">
     <h3>Prova</h3>
     <h1>Hello, {{ $name }}</h1>
-    <?php echo $name; ?>
+    <?php echo "Ciao ". $name; ?>
 </body>
 
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Request;
 
 class Controller extends BaseController
 {
@@ -13,6 +14,12 @@ class Controller extends BaseController
     public function testRoute()
     {
         echo "<b>Test</b> dal controller!";
+    }
+
+    public function saluta(Request $request)
+    {
+        var_dump($request);
+       // echo "Ciao ".$request->name."<br>";
     }
 
 }

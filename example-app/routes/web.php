@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ Route::get('/', function () {
 Route::get('/provavista', function () {
     return view('prova', ["name" => "Mario"]);
 });
+
+Route::post('/richiesta', function (Request $request) {
+    return view('prova', ['name'=> $request->name]);
+});
+
+Route::post('/richiestacontr', [Controller::class, 'saluta']);
 
 
 Route::get('/saluti', function () {

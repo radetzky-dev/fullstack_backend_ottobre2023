@@ -23,6 +23,21 @@
         <input type="text" id="testo" name="testo" required>
         <input type="submit" value="Invia" />
     </form>
+
+
+    <h4>Richiesta</h4>
+    <form method="POST" action="richiesta">
+        @csrf
+        Name <input type="text" id="name" name="name" required>
+        <input type="submit" value="Invia" />
+    </form>
+
+    <h4>Richiesta Controller</h4>
+    <form method="POST" action="richiestacontr">
+        @csrf
+        Name <input type="text" id="name" name="name" required>
+        <input type="submit" value="Invia" />
+    </form>
 </body>
 
 </html>

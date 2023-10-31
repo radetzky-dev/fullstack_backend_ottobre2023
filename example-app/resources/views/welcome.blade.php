@@ -15,6 +15,14 @@
         <input type="text" id="testo" name="testo" required>
         <input type="submit" value="Invia" />
     </form>
+
+    <h4>Tutto</h4>
+    <form method="POST" action="tutto">
+        <!-- https://laravel.com/docs/10.x/csrf  -->
+        @csrf
+        <input type="text" id="testo" name="testo" required>
+        <input type="submit" value="Invia" />
+    </form>
 </body>
 
 </html>

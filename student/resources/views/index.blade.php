@@ -7,6 +7,7 @@
             margin-top: 50px;
         }
     </style>
+    <h3>Lista studenti</h3>
   <!--  <a href="students/create" class="btn btn-primary btn-sm">Inserisci utente</a> -->
     <a href="{{ route('students.create')}}" class="btn btn-primary btn-sm">Inserisci utente</a>
 

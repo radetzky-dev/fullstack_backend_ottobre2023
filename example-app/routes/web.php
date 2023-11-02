@@ -118,3 +118,7 @@ Route::prefix('admin')->group(function () {
         return "Pagina budget";
     });
 });
+
+Route::fallback(function () {
+    return view('404');
+});

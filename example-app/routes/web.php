@@ -102,8 +102,8 @@ Route::get('/category/{category}', function (string $category) {
     return "Tua categoria $category";
 })->whereIn('category', $myArray );
 
-Route::get('/user/profile', function () {
-    return "Benvenuto nella tua pagina profilo";
+Route::get('/user/{id}/profile', function (string $id) {
+    return "Benvenuto nella tua pagina profilo. Il tuo id è $id";
 })->name('profile');
 
 Route::get('/user/profile/category/id/budget', function () {

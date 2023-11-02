@@ -40,7 +40,7 @@
     </form>
     <?php
     
-    $url = route('profile');
+    $url = route('profile', ['id' => 1]);
     $url2 = route('budget');
     ?>
     <a href="<?php echo $url; ?>">Vai alla tua pagina profilo</a> |

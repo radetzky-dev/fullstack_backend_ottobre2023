@@ -28,15 +28,21 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        /* estrapolare singoli valori
+        $params = $request->all();
+        echo $params['name'];
+        */
+      
         $storeData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'phone' => 'required|numeric',
             'password' => 'required|max:255',
         ]);
+
         Student::create($storeData);
 
-        return redirect('/students')->with('completed', 'Student has been saved!');
+        return redirect('/students')->with('success', 'Student has been saved!');
     }
 
     /**
@@ -73,7 +79,7 @@ class StudentController extends Controller
             'password' => 'required|max:255',
         ]);
         Student::whereId($id)->update($updateData);
-        return redirect('/students')->with('completed', 'Student has been updated');
+        return redirect('/students')->with('success', 'Student has been updated');
     }
 
     /**
@@ -87,6 +93,6 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return redirect('/students')->with('completed', 'Student has been deleted');
+        return redirect('/students')->with('success', 'Student has been deleted');
     }
 }

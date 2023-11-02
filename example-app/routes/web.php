@@ -101,3 +101,11 @@ $myArray = ['movie', 'song', 'painting'];
 Route::get('/category/{category}', function (string $category) {
     return "Tua categoria $category";
 })->whereIn('category', $myArray );
+
+Route::get('/user/profile', function () {
+    return "Benvenuto nella tua pagina profilo";
+})->name('profile');
+
+Route::get('/user/profile/category/id/budget', function () {
+    return "Benvenuto nella tua pagina del budget";
+})->name('budget');

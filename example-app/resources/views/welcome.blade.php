@@ -38,6 +38,14 @@
         Name <input type="text" id="name" name="name" required>
         <input type="submit" value="Invia" />
     </form>
+    <?php
+    
+    $url = route('profile');
+    $url2 = route('budget');
+    ?>
+    <a href="<?php echo $url; ?>">Vai alla tua pagina profilo</a> |
+    <a href="user/profile">Vai alla tua pagina profilo</a> |
+    <a href="<?php echo $url2; ?>">Vai alla tua pagina budget</a>
 </body>
 
 </html>

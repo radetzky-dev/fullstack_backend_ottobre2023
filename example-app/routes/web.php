@@ -97,6 +97,7 @@ Route::get('/user2/{name}', function (string $name) {
     return "Tuo username $name";
 })->whereAlphaNumeric('name');
 
+$myArray = ['movie', 'song', 'painting'];
 Route::get('/category/{category}', function (string $category) {
     return "Tua categoria $category";
-})->whereIn('category', ['movie', 'song', 'painting']);
+})->whereIn('category', $myArray );

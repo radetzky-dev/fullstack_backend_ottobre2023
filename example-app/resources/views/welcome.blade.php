@@ -46,6 +46,19 @@
     <a href="<?php echo $url; ?>">Vai alla tua pagina profilo</a> |
     <a href="user/profile">Vai alla tua pagina profilo</a> |
     <a href="<?php echo $url2; ?>">Vai alla tua pagina budget</a>
+    <br>
+
+    <?php
+    use Illuminate\Support\Facades\Route;
+    
+    $route = Route::current(); // Illuminate\Routing\Route
+    $name = Route::currentRouteName(); // string
+    $action = Route::currentRouteAction(); // string
+
+  //  var_dump($route);
+
+    echo " Name $name Action $action";
+    ?>
 </body>
 
 </html>

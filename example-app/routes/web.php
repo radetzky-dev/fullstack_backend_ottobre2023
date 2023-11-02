@@ -53,3 +53,11 @@ Route::any('/tutto', function () {
     echo "Richiesta arrivata in qualsiasi modo!<br>";
     var_dump($_REQUEST);
 });
+
+Route::get('/user/{id}', function (string $id) {
+    return 'Hello, your user id is '.$id;
+});
+
+Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
+   echo "L'id del post è $postId e l'id del commento è $commentId ";
+});

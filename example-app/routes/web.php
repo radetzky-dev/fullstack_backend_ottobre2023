@@ -72,7 +72,7 @@ Route::get('/username/{name}', function (string $name) {
 })->where('name', '[A-Za-z]+');
 
 Route::get('/company/{id}', function (string $id) {
-  return "L'id della tua company è $id";
+    return "L'id della tua company è $id";
 })->where('id', '[0-9]+');
 
 Route::get('/companies/{id}/{name}', function (string $id, string $name) {
@@ -100,7 +100,7 @@ Route::get('/user2/{name}', function (string $name) {
 $myArray = ['movie', 'song', 'painting'];
 Route::get('/category/{category}', function (string $category) {
     return "Tua categoria $category";
-})->whereIn('category', $myArray );
+})->whereIn('category', $myArray);
 
 Route::get('/user/{id}/profile', function (string $id) {
     return "Benvenuto nella tua pagina profilo. Il tuo id è $id";
@@ -109,3 +109,12 @@ Route::get('/user/{id}/profile', function (string $id) {
 Route::get('/user/profile/category/id/budget', function () {
     return "Benvenuto nella tua pagina del budget";
 })->name('budget');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/users', function () {
+        return "Pagina user";
+    });
+    Route::get('/budget', function () {
+        return "Pagina budget";
+    });
+});

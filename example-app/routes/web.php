@@ -24,7 +24,7 @@ Route::get('/provavista', function () {
 });
 
 Route::post('/richiesta', function (Request $request) {
-    return view('prova', ['name'=> $request->name]);
+    return view('prova', ['name' => $request->name]);
 });
 
 Route::post('/richiestacontr', [Controller::class, 'saluta']);
@@ -55,9 +55,24 @@ Route::any('/tutto', function () {
 });
 
 Route::get('/user/{id}', function (string $id) {
-    return 'Hello, your user id is '.$id;
+    return 'Hello, your user id is ' . $id;
+});
+
+Route::get('/users/{name?}', function (?string $name = null) {
+
+    if (is_null($name)) {
+        return "Benvenuto sconosciuto!";
+    }
+
+    return 'Il tuo nome è ' . $name;
+});
+
+
+Route::get('/userid/{id}', function (Request $request, $id) {
+    var_dump($request);
+    return 'Hello, your user id is ' . $id;
 });
 
 Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
-   echo "L'id del post è $postId e l'id del commento è $commentId ";
+    echo "L'id del post è $postId e l'id del commento è $commentId ";
 });

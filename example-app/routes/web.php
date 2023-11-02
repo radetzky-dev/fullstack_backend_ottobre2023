@@ -67,10 +67,22 @@ Route::get('/users/{name?}', function (?string $name = null) {
     return 'Il tuo nome è ' . $name;
 });
 
+Route::get('/username/{name}', function (string $name) {
+    return "Il tuo nome è $name";
+})->where('name', '[A-Za-z]+');
+
+Route::get('/company/{id}', function (string $id) {
+  return "L'id della tua company è $id";
+})->where('id', '[0-9]+');
+
+Route::get('/companies/{id}/{name}', function (string $id, string $name) {
+    return "L'id della tua company è $id e il suo nome è $name";
+})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
+
 
 Route::get('/userid/{id}', function (Request $request, $id) {
-    var_dump($request);
-    return 'Hello, your user id is ' . $id;
+    echo $request->getBaseUrl();
+    dd($request);
 });
 
 Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {

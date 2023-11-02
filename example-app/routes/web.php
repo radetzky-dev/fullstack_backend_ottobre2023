@@ -88,3 +88,15 @@ Route::get('/userid/{id}', function (Request $request, $id) {
 Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
     echo "L'id del post è $postId e l'id del commento è $commentId ";
 });
+
+Route::get('/user1/{id}/{name}', function (string $id, string $name) {
+    return "Id $id e name $name";
+})->whereNumber('id')->whereAlpha('name');
+
+Route::get('/user2/{name}', function (string $name) {
+    return "Tuo username $name";
+})->whereAlphaNumeric('name');
+
+Route::get('/category/{category}', function (string $category) {
+    return "Tua categoria $category";
+})->whereIn('category', ['movie', 'song', 'painting']);

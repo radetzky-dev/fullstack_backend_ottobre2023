@@ -1,105 +1,54 @@
 <?php
-// Leggi il file
-$lines = file('link_info.txt');
+require_once "inc/connection_data.php";
 
-// Inizializza le variabili
-$stats = array();
-$bookStats = array();
+$connection = connectToDB($config);
+if ($connection) {
+    $link = "";
+    $title = "-";
+    $sql = "SELECT * FROM stats";
+    $result = runQuery($sql, $connection);
 
-// Elabora ogni riga
-foreach ($lines as $line) {
-    // Estrapola i dati
-    list($date, $time, $ip, $userAgent, $title) = explode(',', $line, 5);
+    if ($result->num_rows > 0) {
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Book ID</th><th>Browser</th><th>Browser Version</th><th>Operating System</th><th>OS Version</th><th>Content Type</th><th>Device Type</th><th>IP</th><th>Refer</th><th>Query String</th><th>Stat Date</th><th>Stat Time</th><th>Create Time</th></tr>';
 
-    // Calcola la data in vari formati
-    $day = date('Y-m-d', strtotime($date));
-    $week = date('Y-\WW', strtotime($date));
-    $month = date('Y-m', strtotime($date));
-    $year = date('Y', strtotime($date));
-
-    // Inizializza le chiavi dell'array se non esistono già
-    if (!isset($stats[$day][$title])) {
-        $stats[$day][$title] = 0;
-        $bookStats[$title]['daily'] = 0;
-        $bookStats[$title]['monthly'] = 0;
-        $bookStats[$title]['annual'] = 0;
-        $bookStats[$title]['total'] = 0;
-    }
-    if (!isset($stats[$day][$ip])) {
-        $stats[$day][$ip] = 0;
-    }
-    if (!isset($stats[$day]['mobile'])) {
-        $stats[$day]['mobile'] = 0;
-    }
-    if (!isset($stats[$day]['total'])) {
-        $stats[$day]['total'] = 0;
-    }
-
-    // Aggiorna le statistiche
-    $stats[$day][$title]++;
-    $bookStats[$title]['daily']++;
-
-    if ($month == date('Y-m')) {
-        $bookStats[$title]['monthly']++;
-    }
-    
-    if ($year == date('Y')) {
-        $bookStats[$title]['annual']++;
-    }
-
-    $bookStats[$title]['total']++;
-
-    // ... ripeti per settimana, mese e anno
-}
-
-// Visualizza le statistiche in una tabella HTML
-echo '<table class="table">';
-echo '<thead><tr><th>Data</th><th>Titolo</th><th>Utente</th><th>Mobile</th><th>Totale</th></tr></thead>';
-echo '<tbody>';
-foreach ($stats as $date => $data) {
-    echo '<tr>';
-    
-    echo '<td>' . htmlspecialchars($date) . '</td>';
-    
-    foreach ($data as $key => $value) {
-        if ($key != 'mobile' && $key != 'total') {
-            echo '<td>' . htmlspecialchars($key) . '</td>';
-            echo '<td>' . htmlspecialchars($value) . '</td>';
+        while ($row = $result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . $row['id'] . '</td>';
+            echo '<td>' . $row['book_id'] . '</td>';
+            echo '<td>' . $row['browser'] . '</td>';
+            echo '<td>' . $row['browser_v'] . '</td>';
+            echo '<td>' . $row['so'] . '</td>';
+            echo '<td>' . $row['so_v'] . '</td>';
+            echo '<td>' . $row['c_type'] . '</td>';
+            echo '<td>' . $row['device_type'] . '</td>';
+            echo '<td>' . $row['ip'] . '</td>';
+            echo '<td>' . $row['refer'] . '</td>';
+            echo '<td>' . $row['qstring'] . '</td>';
+            echo '<td>' . $row['stat_date'] . '</td>';
+            echo '<td>' . $row['stat_time'] . '</td>';
+            echo '<td>' . $row['create_time'] . '</td>';
+            echo '</tr>';
         }
-        
-        if ($key == 'mobile') {
-            echo '<td>' . htmlspecialchars($value) . '</td>';
-        }
-        
-        if ($key == 'total') {
-            echo '<td>' . htmlspecialchars($value) . '</td>';
-        }
-        
-        echo '</tr>';
+
+        echo '</table>';
+    } else {
+        echo "Nessun dato trovato nella tabella 'stats'.";
     }
+  /*
+    SELECT book_id, stat_date, COUNT(*) as total
+FROM stats
+GROUP BY book_id, stat_date;
+
+SELECT book_id, DATE_FORMAT(stat_date, '%Y-%m') as month, COUNT(*) as total
+FROM stats
+GROUP BY book_id, month;
+
+
+SELECT book_id, YEAR(stat_date) as year, WEEK(stat_date) as week, COUNT(*) as total
+FROM stats
+GROUP BY book_id, year, week;
+
+
+  */
 }
-echo '</tbody>';
-echo '</table>';
-
-// Visualizza le statistiche dei libri in una tabella HTML separata
-echo '<table class="table">';
-echo '<thead><tr><th>Titolo</th><th>Giornaliero</th><th>Mensile</th><th>Annuale</th><th>Totale</th></tr></thead>';
-echo '<tbody>';
-foreach ($bookStats as $title => $data) {
-    
-    echo '<tr>';
-    
-    echo '<td>' . htmlspecialchars($title) . '</td>';
-    
-    echo '<td>' . htmlspecialchars($data['daily']) . '</td>';
-    
-    echo '<td>' . htmlspecialchars($data['monthly']) . '</td>';
-
-    echo '<td>' . htmlspecialchars($data['annual']) . '</td>';
-
-    echo '<td>' . htmlspecialchars($data['total']) . '</td>';
-
-}
-echo '</tbody>';
-echo '</table>';
-

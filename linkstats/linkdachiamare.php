@@ -14,19 +14,27 @@ $connection = connectToDB($config);
             <h3>
                 Books </h3>
             <?php
-                if (isset($_GET["op"]) && isset($_GET["id"])) {
-                        // var_dump($_POST["title"]);
-                        if ($connection) {
-                            $sql = "DELETE FROM books WHERE id=".$_GET["id"];
-                            //SCRIVERE NEL DB
-                            $result = runQuery($sql, $connection);
-                        }
-                    }
+            if (isset($_GET["op"]) && isset($_GET["id"])) {
+                // var_dump($_POST["title"]);
+                if ($connection) {
+                    $sql = "DELETE FROM books WHERE id=" . $_GET["id"];
+                    //SCRIVERE NEL DB
+                    $result = runQuery($sql, $connection);
+                }
+            }
 
             if (isset($_POST["title"])) {
                 // var_dump($_POST["title"]);
                 if ($connection) {
-                    $sql = "INSERT INTO books (title,booklink,cover) VALUES ('" . $_POST["title"] . "','" . $_POST["link"] . "','" . $_POST["cover"] . "')";
+
+                    if (isset($_POST["cover"])) {
+                        $imageData = file_get_contents($_POST["cover"]);
+                        $escapedImageData = $connection->real_escape_string($imageData);
+                    } else {
+                        $escapedImageData = "";
+                    }
+
+                    $sql = "INSERT INTO books (title,booklink,cover) VALUES ('" . $_POST["title"] . "','" . $_POST["link"] . "','" . $escapedImageData . "')";
                     //SCRIVERE NEL DB
                     $result = runQuery($sql, $connection);
                 }
@@ -59,9 +67,11 @@ $connection = connectToDB($config);
                         $result = runQuery($sql, $connection);
                         while ($row = $result->fetch_assoc()) {
                             $link = "index.php?id=" . $row["id"];
-                            $delete = "linkdachiamare.php?op=delete&id=". $row["id"];
+                            $delete = "linkdachiamare.php?op=delete&id=" . $row["id"];
 
-                            echo '<tr><td>' . $row["id"] . '</td><td>' . $row["title"] . '</td><td>' . $row["booklink"] . '</td><td><img src="' . $row["cover"] . '" title="cover" width=150></td><td><a href="' . $delete . '" class="btn btn-primary" onclick="return confirmDelete();">Elimina</a></td><td><a href="' . $link . '" target="_blank">Clicca</a></td></tr>';
+                            $img ="<img src='data:image/jpeg;base64," . base64_encode($row["cover"]) . "' width='150px'/>";
+                        
+                            echo '<tr><td>' . $row["id"] . '</td><td>' . $row["title"] . '</td><td>' . $row["booklink"] . '</td><td>'.$img.'</td><td><a href="' . $delete . '" class="btn btn-primary" onclick="return confirmDelete();">Elimina</a></td><td><a href="' . $link . '" target="_blank">Clicca</a></td></tr>';
                         }
                     }
                     ?>
@@ -76,7 +86,7 @@ $connection = connectToDB($config);
         closeConnection($connection);
     }
     ?>
-        <script>
+    <script>
         function confirmDelete() {
             return confirm("Sei sicuro di voler cancellare?");
         };

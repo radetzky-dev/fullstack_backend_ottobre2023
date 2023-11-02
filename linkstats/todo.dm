@@ -22,7 +22,7 @@ CREATE TABLE `books` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
   `title` varchar(255) NOT NULL,
   `booklink` TEXT NOT NULL,
-  `cover` varchar(255) DEFAULT NULL,
+  `cover` BLOB DEFAULT NULL,
   `create_time` datetime DEFAULT current_timestamp() COMMENT 'Create Time',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

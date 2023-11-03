@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
+    //Forma estesa per fare la stessa cosa richede permissions su bootstrap/cache
+   // return Illuminate\Support\Facades\View::make('welcome');
 });
 
 Route::get('/provavista', function () {

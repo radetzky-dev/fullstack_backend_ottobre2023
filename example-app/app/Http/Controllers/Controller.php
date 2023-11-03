@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Request;
+use App\Repositories\TestRepository;
+use Illuminate\Http\Request;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    public $cheers;
+    public function __construct(
+        TestRepository $cheers,
+    ) {
+        $this->cheers = $cheers;
+    }
 
     public function testRoute()
     {
@@ -18,7 +22,9 @@ class Controller extends BaseController
 
     public function saluta(Request $request)
     {
-            echo "Saluta";
+        echo $this->cheers->saluta($request->input("name")).'<br>';
+        echo $this->cheers->sayHello($request->input("name"));
+        
     }
 
 }

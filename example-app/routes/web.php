@@ -37,6 +37,7 @@ Route::get('/saluti', function () {
 Route::redirect('/prova', 'saluti');
 
 Route::get('/test', [Controller::class, 'testRoute']);
+Route::post('/name', [Controller::class, 'saluta']);
 
 Route::match(['get', 'post'], '/rispondi', function () {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -123,3 +124,4 @@ Route::fallback(function () {
     return view('404');
 });
     
+

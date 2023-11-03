@@ -38,6 +38,14 @@
         Name <input type="text" id="name" name="name" required>
         <input type="submit" value="Invia" />
     </form>
+
+    <h4>Saluta Controller</h4>
+    <form method="POST" action="name">
+        @csrf
+        Name <input type="text" id="name" name="name" required>
+        <input type="submit" value="Invia" />
+    </form>
+
     <?php
     
     $url = route('profile', ['id' => 1]);

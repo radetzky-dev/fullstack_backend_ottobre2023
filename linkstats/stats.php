@@ -36,6 +36,12 @@ if ($connection) {
         echo "Nessun dato trovato nella tabella 'stats'.";
     }
   /*
+
+TODO vedere dati aggregati giorno per giorno per titolo 
+15 marzo chcio 7 -> + devere il dettaglio (che vediamo ora solo di un libro) poi 
+15 marzo altro libro 4
+16 marzo chcico 5
+
     SELECT book_id, stat_date, COUNT(*) as total
 FROM stats
 GROUP BY book_id, stat_date;
@@ -49,6 +55,8 @@ SELECT book_id, YEAR(stat_date) as year, WEEK(stat_date) as week, COUNT(*) as to
 FROM stats
 GROUP BY book_id, year, week;
 
+
+stats per mobile, sistema operativo, zona geografica (idea in fase di registrazione salvarsi la zona https://phpforever.com/php/get-geolocation-from-ip-address-using-php/)
 
   */
 }

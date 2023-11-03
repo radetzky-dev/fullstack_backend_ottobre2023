@@ -7,10 +7,12 @@ use App\Repositories\TestRepository;
 use Illuminate\Http\Request;
 use App\Services\HelloService;
 use Illuminate\Support\Facades\App;
+use Illuminate\Contracts\Foundation\Application;
 
 class Controller extends BaseController
 {
     public $cheers;
+    public $app;
     public function __construct(
         TestRepository $cheers,
     ) {
@@ -28,6 +30,7 @@ class Controller extends BaseController
         echo $this->cheers->sayHello($request->input("name")) . '<br>';
         echo $this->cheers->sayBonjour($request->input("name")).'<br>';
         echo $this->salutaConHelloService($request->input("name"));
+        echo $this->altroSaluto($request->input("name"));
 
     }
 
@@ -39,5 +42,7 @@ class Controller extends BaseController
         $helloServ = App::make("HelloService");
         return $helloServ->salutaInFrancese($name);
     }
+
+
 
 }

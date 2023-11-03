@@ -15,4 +15,9 @@ class TestRepository
             return "Hello, $name";
     }
 
+    public function sayBonjour(string $name)
+    {
+        return "Bonjour, $name!";
+    }
+
 }

@@ -23,7 +23,8 @@ class Controller extends BaseController
     public function saluta(Request $request)
     {
         echo $this->cheers->saluta($request->input("name")).'<br>';
-        echo $this->cheers->sayHello($request->input("name"));
+        echo $this->cheers->sayHello($request->input("name")).'<br>';
+        echo $this->cheers->sayBonjour($request->input("name"));
         
     }
 

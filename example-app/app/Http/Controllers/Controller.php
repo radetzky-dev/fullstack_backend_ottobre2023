@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 use App\Repositories\TestRepository;
 use Illuminate\Http\Request;
+use App\Services\HelloService;
+use Illuminate\Support\Facades\App;
 
 class Controller extends BaseController
 {
@@ -22,10 +24,20 @@ class Controller extends BaseController
 
     public function saluta(Request $request)
     {
-        echo $this->cheers->saluta($request->input("name")).'<br>';
-        echo $this->cheers->sayHello($request->input("name")).'<br>';
-        echo $this->cheers->sayBonjour($request->input("name"));
-        
+        echo $this->cheers->saluta($request->input("name")) . '<br>';
+        echo $this->cheers->sayHello($request->input("name")) . '<br>';
+        echo $this->cheers->sayBonjour($request->input("name")).'<br>';
+        echo $this->salutaConHelloService($request->input("name"));
+
+    }
+
+    public function salutaConHelloService(string $name)
+    {
+        App::bind('HelloService', function () {
+            return new HelloService();
+        });
+        $helloServ = App::make("HelloService");
+        return $helloServ->salutaInFrancese($name);
     }
 
 }

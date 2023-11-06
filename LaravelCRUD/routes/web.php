@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('greeting', ['name' => 'James']);
 });
 
+Route::get('/direttive', function () {
+    return view('direttive', ['name' => 'James', 'age' => 26, 'mail' => 'xxx@eee.it', 'city' => 'Roma']);
+});
+
 Route::get('/admin', function () {
     return view('admin.index');
 });

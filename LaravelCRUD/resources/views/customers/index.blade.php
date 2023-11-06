@@ -27,9 +27,9 @@
         </div>
 
         @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
         @endif
 
         <table class="table table-bordered">
@@ -43,23 +43,23 @@
                 <th width="280px">Action</th>
             </tr>
             @foreach ($customers as $cliente)
-            <tr>
-                <td>{{ $cliente->id }}</td>
-                <td>{{ $cliente->name }}</td>
-                <td>{{ $cliente->email }}</td>
-                <td>{{ $cliente->address }}</td>
-                <td>
-                    <form action="{{ route('customers.destroy', $cliente->id) }}" method="Post">
+                <tr>
+                    <td>{{ $cliente->id }}</td>
+                    <td>{{ $cliente->name }}</td>
+                    <td>{{ $cliente->email }}</td>
+                    <td>{{ $cliente->address }}</td>
+                    <td>
+                        <form action="{{ route('customers.destroy', $cliente->id) }}" method="Post">
 
-                        <a class="btn btn-primary" href="{{ route('custumers.edit', $cliente->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('customers.edit', $cliente->id) }}">Edit</a>
 
-                        @csrf
-                        @method('DELETE')
+                            @csrf
+                            @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
         </table>
 

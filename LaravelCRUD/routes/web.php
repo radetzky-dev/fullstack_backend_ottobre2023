@@ -31,10 +31,12 @@ Route::get('/report/anagrafiche/{mese}/{year}', function (string $month, string 
     return view('admin.report.report', $arrayRotte);
 });
 
-Route::resource('companies', CompanyCRUDController::class);
 
-Route::resource('customers', CustomerController::class);
+
+Route::resources([
+    'companies' => CompanyCRUDController::class,
+    'customers' => CustomerController::class,
+    'photos' => PhotoController::class
+]);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
-
-Route::resource('photos', PhotoController::class);

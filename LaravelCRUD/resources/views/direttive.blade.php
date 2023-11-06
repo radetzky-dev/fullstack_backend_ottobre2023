@@ -23,9 +23,27 @@
         @endif
     @endif
 
+    <br>
+
     @unless (is_array($records))
         Non è un array
     @endunless
+
+    <br>
+
+    <?php
+    $records = true;
+    ?>
+
+    @isset($records)
+        is defined and is not null...
+    @endisset
+
+    <br>
+
+    @empty($records)
+        is "empty"...
+    @endempty
 
 
 </body>

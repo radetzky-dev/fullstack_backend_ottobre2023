@@ -7,7 +7,7 @@
 
     <?php
     $records = ['primo disco', 'secondo disco', 'terzo disco'];
-    //  $records = 1;
+    //$records = 1;
     ?>
 
     @if (is_array($records))
@@ -22,6 +22,10 @@
             I don't have any records!
         @endif
     @endif
+
+    @unless (is_array($records))
+        Non è un array
+    @endunless
 
 
 </body>

@@ -45,7 +45,17 @@
             @foreach ($customers as $cliente)
                 <tr>
                     <td>{{ $cliente->id }}</td>
-                    <td>{{ $cliente->name }}</td>
+                    <td>
+                        @php
+                            $name = $cliente->name;
+                        @endphp
+                        @if (ctype_lower($name))
+                            {{ strtoupper($name) }}
+                        @else
+                            {{ lcfirst($name) }}
+                        @endif
+
+                    </td>
                     <td>{{ $cliente->email }}</td>
                     <td>{{ $cliente->address }}</td>
                     <td>

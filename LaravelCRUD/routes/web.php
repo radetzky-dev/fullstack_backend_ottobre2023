@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,7 @@ Route::get('/report/anagrafiche/{mese}/{year}', function (string $month, string 
 Route::resource('companies', CompanyCRUDController::class);
 
 Route::resource('customers', CustomerController::class);
+
+Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::resource('photos', PhotoController::class);

@@ -13,6 +13,20 @@ require_once "inc/connection_data.php";
             <?php
             $connection = connectToDB($config);
             if ($connection) {
+
+                //TODO trasformare in funzione
+                //Carica titoli libri
+                $sql = "SELECT * FROM books";
+                $result = runQuery($sql, $connection);
+                $titles = array();
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $titles[$row["id"]] = $row["title"];
+                    }
+                }
+
+
+                //TODO trasformare in funzione
                 $link = "";
                 $title = "-";
                 $sql = "SELECT * FROM stats";
@@ -25,7 +39,7 @@ require_once "inc/connection_data.php";
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr>';
                         echo '<td>' . $row['id'] . '</td>';
-                        echo '<td>' . $row['book_id'] . '</td>';
+                        echo '<td>' . $titles[$row["book_id"]] . '</td>';
                         echo '<td>' . $row['browser'] . '</td>';
                         echo '<td>' . $row['browser_v'] . '</td>';
                         echo '<td>' . $row['so'] . '</td>';
@@ -44,6 +58,28 @@ require_once "inc/connection_data.php";
                     echo '</tbody></table>';
                 }
             }
+
+            //TODO trasformare in funzione
+            $dailySql = " SELECT book_id, stat_date, COUNT(*) as total
+            FROM stats GROUP BY book_id, stat_date order by stat_date DESC";
+            $result = runQuery($dailySql, $connection);
+
+            if ($result->num_rows > 0) {
+                echo '<table class="table table-bordered">';
+                echo '<thead><th>BOOK</th><th>DATA</th><th>TOTALE</th><th>DETTAGLI</th></thead><tbody>';
+
+                while ($row = $result->fetch_assoc()) {
+                    echo '<tr>';
+                    echo '<td>' . $titles[$row["book_id"]] . '</td>';
+                    echo '<td>' . $row['stat_date'] . '</td>';
+                    echo '<td>' . $row['total'] . '</td>';
+                    echo '<td> VEDI DETTAGLI</td>';
+                    echo '</tr>';
+                }
+                echo '</tbody></table>';
+            }
+
+            closeConnection($connection);
             ?>
         </div>
         </div>

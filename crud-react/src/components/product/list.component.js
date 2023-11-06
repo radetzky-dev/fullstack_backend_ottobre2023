@@ -65,7 +65,7 @@ export default function List() {
         <div className="col-12">
           <div className="card card-body">
             <div className="table-responsive">
-              <table className="table table-bordered mb-0 text-center">
+              <table className="table mb-0 text-center">
                 <thead>
                   <tr>
                     <th>Prodotto</th>
@@ -78,11 +78,13 @@ export default function List() {
                   {products.length > 0 &&
                     products.map((row, key) => (
                       <tr key={key}>
-                        <td>{row.title}</td>
+                        <td>
+                          <b>{row.title}</b>
+                        </td>
                         <td>{row.description}</td>
                         <td>
                           <img
-                            width="50px"
+                            width="100px"
                             src={`http://localhost:8000/storage/product/image/${row.image}`}
                           />
                         </td>

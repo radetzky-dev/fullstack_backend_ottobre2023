@@ -79,7 +79,7 @@ export default function EditUser() {
         <div className="col-12 col-sm-12 col-md-6">
           <div className="card">
             <div className="card-body">
-              <h4 className="card-title">Update Product</h4>
+              <h4 className="card-title">Modifica Prodotto</h4>
               <hr />
               <div className="form-wrapper">
                 {Object.keys(validationError).length > 0 && (
@@ -101,7 +101,7 @@ export default function EditUser() {
                   <Row>
                     <Col>
                       <Form.Group controlId="Name">
-                        <Form.Label>Title</Form.Label>
+                        <Form.Label>Prodotto</Form.Label>
                         <Form.Control
                           type="text"
                           value={title}
@@ -115,7 +115,7 @@ export default function EditUser() {
                   <Row className="my-3">
                     <Col>
                       <Form.Group controlId="Description">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>Descrizione</Form.Label>
                         <Form.Control
                           as="textarea"
                           rows={3}
@@ -130,7 +130,7 @@ export default function EditUser() {
                   <Row>
                     <Col>
                       <Form.Group controlId="Image" className="mb-3">
-                        <Form.Label>Image</Form.Label>
+                        <Form.Label>Immagine</Form.Label>
                         <Form.Control type="file" onChange={changeHandler} />
                       </Form.Group>
                     </Col>

@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('greeting', ['name' => 'James']);
 });
 
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
 Route::resource('companies', CompanyCRUDController::class);
 
 Route::resource('customers', CustomerController::class);

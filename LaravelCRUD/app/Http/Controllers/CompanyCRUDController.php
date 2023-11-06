@@ -35,7 +35,6 @@ class CompanyCRUDController extends Controller
         $company->email = $request->email;
         $company->address = $request->address;
 
-
         $company->save();
 
 

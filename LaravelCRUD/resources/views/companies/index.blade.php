@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <?php
+    //var_dump($companies);
+    ?>
 
     <div class="container mt-2">
         <div class="pull-right mb-2">

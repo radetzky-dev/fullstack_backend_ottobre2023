@@ -15,8 +15,10 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('greeting', ['name' => 'James']);
 });
 
 Route::resource('companies', CompanyCRUDController::class);

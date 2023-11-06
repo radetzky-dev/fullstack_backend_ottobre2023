@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class CompanyCRUDController extends Controller
 {
@@ -17,7 +18,13 @@ class CompanyCRUDController extends Controller
 
     public function create()
     {
-        return view('companies.create');
+        if (View::exists('companies.create')) {
+            return view('companies.create');
+        } else {
+            echo "Errore la vista non esiste!";
+            die();
+        }
+
     }
 
 

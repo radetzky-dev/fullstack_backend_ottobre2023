@@ -23,9 +23,10 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
-Route::get('/report/anagrafiche/{year}', function (string $year) {
 
-    return view('admin.report.report', ['year' => $year]);
+Route::get('/report/anagrafiche/{mese}/{year}', function (string $month, string $year) {
+    $arrayRotte = ['year' => $year, 'mese' => $month];
+    return view('admin.report.report', $arrayRotte);
 });
 
 Route::resource('companies', CompanyCRUDController::class);

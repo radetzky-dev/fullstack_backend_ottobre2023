@@ -15,14 +15,17 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
-
-
 Route::get('/', function () {
     return view('greeting', ['name' => 'James']);
 });
 
 Route::get('/admin', function () {
     return view('admin.index');
+});
+
+Route::get('/report/anagrafiche/{year}', function (string $year) {
+
+    return view('admin.report.report', ['year' => $year]);
 });
 
 Route::resource('companies', CompanyCRUDController::class);

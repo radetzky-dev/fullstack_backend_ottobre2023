@@ -39,12 +39,12 @@ class ProductController extends Controller
             Product::create($request->post() + ['image' => $imageName]);
 
             return response()->json([
-                'message' => 'Product Created Successfully!!'
+                'message' => 'Prodotto creato con successo!!'
             ]);
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
             return response()->json([
-                'message' => 'Something goes wrong while creating a product!!'
+                'message' => 'Si è verificato un errore nella creazione del prodotto!'
             ], 500);
         }
     }
@@ -98,13 +98,13 @@ class ProductController extends Controller
             }
 
             return response()->json([
-                'message' => 'Product Updated Successfully!!'
+                'message' => 'Prodotto aggiornato con successo!'
             ]);
 
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
             return response()->json([
-                'message' => 'Something goes wrong while updating a product!!'
+                'message' => 'Errore nell\'aggiornamento del prodotto!'
             ], 500);
         }
     }
@@ -129,13 +129,13 @@ class ProductController extends Controller
             $product->delete();
 
             return response()->json([
-                'message' => 'Product Deleted Successfully!!'
+                'message' => 'Prodotto eliminato con successo!'
             ]);
 
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
             return response()->json([
-                'message' => 'Something goes wrong while deleting a product!!'
+                'message' => 'Errore nella cancellazione del prodotto!'
             ]);
         }
     }

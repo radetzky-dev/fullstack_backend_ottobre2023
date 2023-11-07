@@ -32,7 +32,7 @@
     <br>
 
     <?php
-    $records = true;
+    $records = false;
     ?>
 
     @isset($records)
@@ -44,6 +44,15 @@
     @empty($records)
         is "empty"...
     @endempty
+
+    @auth
+        Utente loggato
+    @endauth
+
+    <br>
+    @guest
+        Utente ospite. Vai al login...
+    @endguest
 
 
 </body>

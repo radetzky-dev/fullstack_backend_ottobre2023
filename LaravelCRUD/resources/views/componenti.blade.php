@@ -1,9 +1,6 @@
 <html>
-<style>
-    .alert-error {
-        background-color: red;
-    }
-</style>
+
+{{-- @vite('resources/js/app.js') --}}
 
 <body>
     <h3>Componenti</h3>
@@ -13,7 +10,8 @@
         $slot = 'slot di prova';
     @endphp
 
-    NOTA: Usiamo saluto-comp qui mentre nella classe e nel componente si usa salutoComp (camelCase)<br>
+    <div class="alert-ok">NOTA: Usiamo saluto-comp qui mentre nella classe e nel componente si usa salutoComp (camelCase)
+    </div><br>
     <x-alert type="error" :saluto-comp="$hello" :message="$message" />
 
 

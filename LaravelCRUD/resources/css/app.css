@@ -1,0 +1,12 @@
+.alert-ok {
+    background-color: greenyellow;
+    font-weight: 400;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.alert-error {
+    background-color: #dd242488;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-size: large;
+}

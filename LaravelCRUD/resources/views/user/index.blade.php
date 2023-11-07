@@ -8,6 +8,20 @@
         <p>This is user id {{ $user->id }} name {{ $user->name }} </p>
     @endforeach
 
+    <hr>
+
+    @foreach ($users as $user)
+        @if ($loop->first)
+            This is the first iteration.
+        @endif
+
+        @if ($loop->last)
+            This is the last iteration.
+        @endif
+
+        <p>This is user {{ $user->name }} fatti {{ $loop->iteration }} ne restano {{ $loop->remaining }}</p>
+    @endforeach
+
     <?php
     // var_dump($users);
     $users = [];

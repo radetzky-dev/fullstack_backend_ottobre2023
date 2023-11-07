@@ -44,3 +44,4 @@ Route::resources([
 ]);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/', [UserController::class, 'index']);

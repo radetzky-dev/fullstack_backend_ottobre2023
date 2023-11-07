@@ -86,6 +86,14 @@
         </div>
     @endif
 
+    <hr>
+    Ciclo for <br>
+    @for ($i = 10; $i >= 1; $i--)
+        The current value is {{ $i }}<br>
+    @endfor
+
+
+
 
 </body>
 

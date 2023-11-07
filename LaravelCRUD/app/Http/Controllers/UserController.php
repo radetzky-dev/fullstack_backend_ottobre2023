@@ -14,4 +14,15 @@ class UserController extends Controller
             'user' => User::findOrFail($id)
         ]);
     }
+
+    public function index()
+    {
+
+        $users = User::all();
+        return view('user.index', compact('users'));
+
+        // $data['users'] = User::orderBy('name', 'ASC');
+
+        // return view('user.index', $data);
+    }
 }

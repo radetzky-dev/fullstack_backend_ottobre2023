@@ -8,6 +8,7 @@
     <?php
     $records = ['primo disco', 'secondo disco', 'terzo disco'];
     //$records = 1;
+    $caso = 3;
     ?>
 
     @if (is_array($records))
@@ -22,6 +23,23 @@
             I don't have any records!
         @endif
     @endif
+
+    <hr>
+    @php
+        $caso = 2;
+    @endphp
+    @switch($caso)
+        @case(1)
+            First case...
+        @break
+
+        @case(2)
+            Second case...
+        @break
+
+        @default
+            Default case...
+    @endswitch
 
     <br>
 
@@ -53,6 +71,20 @@
     @guest
         Utente ospite. Vai al login...
     @endguest
+
+    @production
+        SImao in ambiente di produzione
+    @endproduction
+
+    @env('local')
+    Siamo in ambiente di sviluppo
+    @endenv
+
+    @sectionMissing('navigation')
+        <div class="pull-right">
+            aggiunto perchè mancava!
+        </div>
+    @endif
 
 
 </body>

@@ -105,7 +105,12 @@
         The current value is {{ $i }}<br>
     @endfor
 
-    @include('sottovista')
+    {{-- This comment will not be present in the rendered HTML --}}
+    @include('sottovista', ['valore' => 'mare blu'])
+
+    @includeIf('nonsiste', ['valore' => 'mare blu'])
+
+    @includeWhen(true, 'sottovista', ['valore' => 'cielo azzurro'])
 
     @php
         $isActive = false;

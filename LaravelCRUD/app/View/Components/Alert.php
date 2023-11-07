@@ -18,6 +18,11 @@ class Alert extends Component
     ) {
     }
 
+    public function turnUp(string $option): string
+    {
+        return strtoupper($option);
+    }
+
 
     /**
      * Get the view / contents that represent the component.

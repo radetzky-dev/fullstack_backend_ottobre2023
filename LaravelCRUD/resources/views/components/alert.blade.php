@@ -1,3 +1,5 @@
 <div class="alert-{{ $type }}">
-    {{ $salutoComp }} sono un messaggio: {{ $message }}
+    {{ $salutoComp }} sono un
+    {{ $turnUp('metodo') }}
+    : {{ $turnUp($message) }}
 </div>

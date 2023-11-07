@@ -1,5 +1,3 @@
-<div>
-    <hr>
-    <p>QUESTO è il componente ALERT!</p>
-    <hr>
+<div class="alert-{{ $type }}">
+    {{ $saluto }} sono un messaggio: {{ $message }}
 </div>

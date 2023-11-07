@@ -1,3 +1,3 @@
 <div class="alert-{{ $type }}">
-    {{ $saluto }} sono un messaggio: {{ $message }}
+    {{ $salutoComp }} sono un messaggio: {{ $message }}
 </div>

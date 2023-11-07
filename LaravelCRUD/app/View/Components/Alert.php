@@ -14,7 +14,7 @@ class Alert extends Component
     public function __construct(
         public string $type,
         public string $message,
-        public string $saluto
+        public string $salutoComp
     ) {
     }
 

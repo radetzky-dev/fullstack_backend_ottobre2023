@@ -9,7 +9,8 @@
     <h3>Componenti</h3>
     @php
         $message = 'mondo';
-        $hello = 'Buongiorno';
+        $hello = 'BuonAserA';
     @endphp
 
-    <x-alert type="error" :saluto="$hello" :message="$message" />
+    NOTA: Usiamo saluto-comp qui mentre nella classe e nel componente si usa salutoComp (camelCase)<br>
+    <x-alert type="error" :saluto-comp="$hello" :message="$message" />

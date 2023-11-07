@@ -1,4 +1,17 @@
 <html>
+<style>
+    .font-bold {
+        font-weight: bold;
+    }
+
+    .p-4 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .bg-red {
+        background-color: red;
+    }
+</style>
 
 <body>
     <h1>Ciao, {{ $name }}</h1>
@@ -92,6 +105,24 @@
         The current value is {{ $i }}<br>
     @endfor
 
+
+    @php
+        $isActive = false;
+        $hasError = true;
+    @endphp
+
+    <span @class([
+        'p-4',
+        'font-bold' => $isActive,
+        'text-gray-500' => !$isActive,
+        'bg-red' => $hasError,
+    ])>La mia scritta</span>
+
+    @php
+        $isActive = true;
+    @endphp
+
+    <span @style(['background-color: blue', 'font-weight: bold' => $isActive])>Altra scritta</span>
 
 
 

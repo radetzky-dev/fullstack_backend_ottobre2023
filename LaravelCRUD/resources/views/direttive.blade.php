@@ -105,6 +105,7 @@
         The current value is {{ $i }}<br>
     @endfor
 
+    @include('sottovista')
 
     @php
         $isActive = false;

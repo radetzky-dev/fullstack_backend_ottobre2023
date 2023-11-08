@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\SingleServer;
+use App\Http\Middleware\EnsureTokenIsValid;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,6 @@ Route::get('/componenti/', function () {
 
 
 Route::get('/server', SingleServer::class);
+Route::post('/testmid', function () {
+    return view('task');
+})->middleware(EnsureTokenIsValid::class);

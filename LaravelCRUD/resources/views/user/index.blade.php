@@ -5,7 +5,7 @@
 
 
     @foreach ($users as $user)
-        <p>This is user id {{ $user->id }} name {{ $user->name }} </p>
+        <p>This is user id {{ $user->id }} - name <strong>{{ $user->name }}</strong> </p>
     @endforeach
 
     <hr>

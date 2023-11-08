@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\SingleServer;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,6 @@ Route::get('/user/', [UserController::class, 'index']);
 Route::get('/componenti/', function () {
     return view('componenti');
 });
+
+
+Route::get('/server', SingleServer::class);

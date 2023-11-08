@@ -50,6 +50,8 @@ Route::resources([
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/user/', [UserController::class, 'index']);
+Route::get('/users/export', [UserController::class, 'exportUserPdf']);
+
 Route::get('/componenti/', function () {
     return view('componenti');
 });

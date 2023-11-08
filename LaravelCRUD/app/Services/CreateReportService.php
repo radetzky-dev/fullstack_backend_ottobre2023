@@ -15,4 +15,15 @@ class CreateReportService
 
     }
 
+    public function createUsersReport($users)
+    {
+        $lista = "<h1>Lista Utenti</h1><p>NOME    |   EMAIL</p>";
+        foreach ($users as $user) {
+            $lista = $lista . $user['name'] . "    " . $user['email'] . '<br>';
+        }
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => storage_path('mpdf')]);
+        $mpdf->WriteHTML($lista);
+        return $mpdf->Output();
+    }
+
 }

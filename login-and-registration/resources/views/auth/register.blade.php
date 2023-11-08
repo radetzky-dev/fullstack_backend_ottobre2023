@@ -46,6 +46,6 @@
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
 
-        @include('auth.partials.copy')
+        @include('layouts.partials.copy')
     </form>
 @endsection

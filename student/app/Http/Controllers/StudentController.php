@@ -11,7 +11,6 @@ class StudentController extends Controller
 
     public function showAll()
     {
-
         $student = DB::select('select * from students');
         return view('index', compact('student'));
     }
@@ -30,6 +29,14 @@ class StudentController extends Controller
         return view('index', compact('student'));
     }
 
+    public function updatePwd(string $name, string $newPwd)
+    {
+        DB::update(
+            'update students set password = "' . $newPwd . '" where name = ?',
+            [$name]
+        );
+        return $this->showAll();
+    }
 
 
     public function index()

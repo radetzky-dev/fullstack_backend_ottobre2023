@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
 
+    public function showAllqb()
+    {
+        //query builder
+        $student = DB::table('students')->get();
+        return view('index', compact('student'));
+    }
+
+
     public function showAll()
     {
         $student = DB::select('select * from students');

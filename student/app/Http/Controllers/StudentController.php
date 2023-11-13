@@ -23,6 +23,14 @@ class StudentController extends Controller
         return view('index', compact('student'));
     }
 
+    public function showOneName(string $name, string $pwd)
+    {
+        $student = DB::select('select * from students where name = :name and password = :password', ['name' => $name, 'password' => $pwd]);
+
+        return view('index', compact('student'));
+    }
+
+
 
     public function index()
     {

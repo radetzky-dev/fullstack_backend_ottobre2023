@@ -22,4 +22,5 @@ Route::resource('students', 'App\Http\Controllers\StudentController');
 Route::get('/mostratutti', ['App\Http\Controllers\StudentController', 'showAll'])->name("mostratutti");
 
 Route::get('/mostra/{name}', ['App\Http\Controllers\StudentController', 'showOne']);
+Route::get('/mostra/{name}/{pwd}', ['App\Http\Controllers\StudentController', 'showOneName']);
 

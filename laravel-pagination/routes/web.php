@@ -19,9 +19,9 @@ use App\Http\Controllers\EmployeeController;
 
 
 
-Route::get('/', [EmployeeController::class, 'getData']);
+Route::get('/', [EmployeeController::class, 'getData'])->name("mostraimpiegati");
 
-Route::get('/voli', [FlightController::class, 'getData']);
+Route::get('/voli', [FlightController::class, 'getData'])->name("mostravoli");
 
 Route::get('/qb', [EmployeeController::class, 'getDataQb']);
 

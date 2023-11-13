@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    <a href="{{ route('mostraimpiegati') }}" class="btn btn-primary btn-sm">Mostra Impiegati</a>
+
     <div class="container mt-5">
         <table class="table table-bordered mb-5">
             <thead>

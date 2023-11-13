@@ -16,13 +16,28 @@ class DatabaseSeeder extends Seeder
         $faker = Faker::create();
 
 
-        foreach (range(1, 500) as $index) {
+        foreach (range(1, 100) as $index) {
+
+            /* 
             DB::table('employees')->insert([
-                'firstname' => $faker->firstname,
-                'lastname' => $faker->lastname,
-                'email' => $faker->email,
-                'dob' => $faker->date('d m Y')
+                 'firstname' => $faker->firstname,
+                 'lastname' => $faker->lastname,
+                 'email' => $faker->email,
+                 'dob' => $faker->date('d m Y')
+             ]);
+ */
+
+            DB::table('flights')->insert([
+                'company' => $faker->company,
+                'confirmed' => $faker->boolean,
+                'departtime' => $faker->time,
+                'ticketprice' => $faker->randomFloat(2, 1, 100),
+                'description' => $faker->text,
+                'depart' => $faker->city,
+                'destination' => $faker->city,
             ]);
+
+
         }
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EmployeeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,8 @@ use App\Http\Controllers\EmployeeController;
 
 
 Route::get('/', [EmployeeController::class, 'getData']);
+
+Route::get('/voli', [FlightController::class, 'getData']);
 
 Route::get('/qb', [EmployeeController::class, 'getDataQb']);
 

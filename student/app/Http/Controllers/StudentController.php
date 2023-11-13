@@ -38,6 +38,24 @@ class StudentController extends Controller
         return $this->showAll();
     }
 
+    public function updateDelete(string $name, string $newPwd, string $deleteName)
+    {
+
+        DB::transaction(function () use ($name, $newPwd, $deleteName) {
+            DB::update(
+                'update students set password = "' . $newPwd . '" where name = ?',
+                [$name]
+            );
+
+            DB::delete('delete from students where name = ?', [$deleteName]);
+        });
+
+
+        return $this->showAll();
+    }
+
+
+
 
     public function index()
     {

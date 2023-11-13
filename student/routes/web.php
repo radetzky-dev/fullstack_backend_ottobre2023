@@ -25,3 +25,7 @@ Route::get('/mostra/{name}', ['App\Http\Controllers\StudentController', 'showOne
 Route::get('/mostra/{name}/{pwd}', ['App\Http\Controllers\StudentController', 'showOneName']);
 Route::get('/cambiapwd/{name}/{newpwd}', ['App\Http\Controllers\StudentController', 'updatePwd']);
 
+
+Route::get('/cambiapwdcancella/{name}/{newpwd}/{deletename}', ['App\Http\Controllers\StudentController', 'updateDelete']);
+
+

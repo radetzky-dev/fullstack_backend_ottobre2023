@@ -60,6 +60,24 @@ class StudentController extends Controller
             echo $email . '<br>';
         }
 
+        echo "<hr>";
+
+        $students = DB::table('students')
+            ->select('name', 'email as user_email')
+            ->get();
+
+        foreach ($students as $student) {
+            echo $student->user_email . '<br>';
+        }
+
+    }
+
+    public function cerca(Request $request)
+    {
+        $student = DB::table('students')
+            ->where('name', 'like', '%' . $request->input("name") . '%')
+            ->get();
+        return view('index', compact('student'));
     }
 
 

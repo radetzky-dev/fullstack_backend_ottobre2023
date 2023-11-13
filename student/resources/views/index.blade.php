@@ -11,6 +11,12 @@
     <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm">Inserisci utente</a> |
     <a href="{{ route('mostratutti') }}" class="btn btn-primary btn-sm">Mostra tutti gli utenti</a>
 
+    <form method="POST" action="cerca" class="push-top">
+        @csrf
+        Cerca nome <input type="text" id="name" name="name" required>
+        <input type="submit" value="Invia" />
+    </form>
+
     <div class="push-top">
         @if (session()->get('success'))
             <div class="alert alert-success">

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\EmployeeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/', [EmployeeController::class, 'getData']);
+
+Route::get('/qb', [EmployeeController::class, 'getDataQb']);
+
+Route::get('/convert-to-json', function () {
+    return App\Models\Employee::paginate(5);
 });

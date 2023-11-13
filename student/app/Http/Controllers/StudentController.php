@@ -12,7 +12,7 @@ class StudentController extends Controller
     public function showAllqb()
     {
         //query builder
-        $student = DB::table('students')->get();
+        $student = DB::table('students')->orderBy('name')->get();
         return view('index', compact('student'));
     }
 
@@ -35,16 +35,26 @@ class StudentController extends Controller
 
     public function findById($id)
     {
-        $student = DB::table('students')->find($id);
 
-        foreach ($student as $student) {
-            echo $student . ' ';
+        if (DB::table('students')->where('id', $id)->exists()) {
+            $student = DB::table('students')->find($id);
+            foreach ($student as $student) {
+                echo $student . ' ';
+            }
+        } else {
+            echo "Non esiste nessun studente con id $id<br>";
         }
+
 
     }
 
     public function showOnlyMails()
     {
+
+        $conta = DB::table('students')->count();
+
+        echo "Le mail sono $conta<br>";
+
         $emails = DB::table('students')->pluck('email');
         foreach ($emails as $email) {
             echo $email . '<br>';

@@ -76,7 +76,9 @@ class StudentController extends Controller
     {
         $student = DB::table('students')
             ->where('name', 'like', '%' . $request->input("name") . '%')
-            ->get();
+            ->get()->dump();
+
+
         return view('index', compact('student'));
     }
 

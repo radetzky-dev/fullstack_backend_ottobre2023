@@ -31,8 +31,27 @@ class StudentController extends Controller
         } else {
             return "No result";
         }
+    }
+
+    public function findById($id)
+    {
+        $student = DB::table('students')->find($id);
+
+        foreach ($student as $student) {
+            echo $student . ' ';
+        }
 
     }
+
+    public function showOnlyMails()
+    {
+        $emails = DB::table('students')->pluck('email');
+        foreach ($emails as $email) {
+            echo $email . '<br>';
+        }
+
+    }
+
 
 
     public function showAll()

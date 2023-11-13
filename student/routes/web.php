@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::resource('students', 'App\Http\Controllers\StudentController');
 
 Route::get('/mostratutti', ['App\Http\Controllers\StudentController', 'showAll'])->name("mostratutti");
-Route::get('/mostratuttiqb', ['App\Http\Controllers\StudentController', 'showAllqb']);
+
 
 Route::get('/mostra/{name}', ['App\Http\Controllers\StudentController', 'showOne']);
 Route::get('/mostra/{name}/{pwd}', ['App\Http\Controllers\StudentController', 'showOneName']);
@@ -29,4 +29,7 @@ Route::get('/cambiapwd/{name}/{newpwd}', ['App\Http\Controllers\StudentControlle
 
 Route::get('/cambiapwdcancella/{name}/{newpwd}/{deletename}', ['App\Http\Controllers\StudentController', 'updateDelete']);
 
-
+//query builder
+Route::get('/mostratuttiqb', ['App\Http\Controllers\StudentController', 'showAllqb']);
+Route::get('/mostramail/{name}', ['App\Http\Controllers\StudentController', 'getMail']);
+Route::get('/mostramail2/{name}/{pwd}', ['App\Http\Controllers\StudentController', 'getExtraMail']);

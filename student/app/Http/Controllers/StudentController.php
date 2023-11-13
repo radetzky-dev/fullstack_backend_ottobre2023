@@ -16,6 +16,24 @@ class StudentController extends Controller
         return view('index', compact('student'));
     }
 
+    public function getMail($name)
+    {
+        $user = DB::table('students')->where('name', $name)->first();
+        return $user->email;
+    }
+
+    public function getExtraMail($name, $pwd)
+    {
+        $user = DB::table('students')->where('name', $name)->where('password', $pwd)->first();
+
+        if ($user) {
+            return $user->email;
+        } else {
+            return "No result";
+        }
+
+    }
+
 
     public function showAll()
     {

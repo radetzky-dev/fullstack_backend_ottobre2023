@@ -7,8 +7,8 @@
         }
     </style>
     <h3>Lista studenti</h3>
-    <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm">Inserisci utente</a> |
-    <a href="{{ route('mostratutti') }}" class="btn btn-primary btn-sm">Mostra tutti gli utenti</a> |
+    <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm">Inserisci Studente</a> |
+    <a href="{{ route('mostratutti') }}" class="btn btn-primary btn-sm">Mostra tutti gli Studenti</a> |
     <a href="{{ route('prof.index') }}" class="btn btn-primary btn-sm">Mostra tutti i professori</a>
 
     <form method="POST" action="cerca" class="push-top">

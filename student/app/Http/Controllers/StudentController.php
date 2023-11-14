@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -219,5 +220,36 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect('/students')->with('success', 'Student has been deleted');
+    }
+
+    public function showComments($id)
+    {
+        $student = Student::find($id);
+        $comments = $student->comment;
+
+        return view('comments', compact('comments'));
+    }
+
+    public function store_comment()
+    {
+
+        $student = Student::find(3);
+
+        $comment = new Comment;
+        $comment->student_id = $student->id;
+        $comment->comment = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indust';
+        $comment->save();
+
+        $comment = new Comment;
+        $comment->student_id = $student->id;
+        $comment->comment = 'king it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydne';
+        $comment->save();
+
+        $comment = new Comment;
+        $comment->student_id = $student->id;
+        $comment->comment = 'ed to be sure there isnt anything embarrassing hidden in the middle of text. All the Latin words,';
+        $comment->save();
+
+        dd($comment);
     }
 }

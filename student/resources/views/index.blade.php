@@ -50,6 +50,8 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm"" type="submit">Delete</button>
                             </form>
+                            <a href="{{ route('comments', $students->id) }}" class="btn btn-primary btn-sm"">Comments</a>
+
                         </td>
                     </tr>
                 @endforeach

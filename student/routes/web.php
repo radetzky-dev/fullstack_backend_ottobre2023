@@ -47,3 +47,6 @@ Route::get('/trovaprofessore/{id}', ['App\Http\Controllers\ProfessorController',
 
 Route::post('/prof/store', ['App\Http\Controllers\ProfessorController', 'store'])->name("prof.store");
 Route::delete('/prof/destroy/{id}', ['App\Http\Controllers\ProfessorController', 'destroy'])->name("prof.destroy");
+
+Route::get('/students/store/comment', ['App\Http\Controllers\StudentController', 'store_comment'])->name('storeComment');
+Route::get('/show/comment/{id}', ['App\Http\Controllers\StudentController', 'showComments'])->name("comments");

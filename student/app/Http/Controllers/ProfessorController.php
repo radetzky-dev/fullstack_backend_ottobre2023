@@ -9,6 +9,11 @@ class ProfessorController extends Controller
 {
     public function show()
     {
+        $num = Professor::all()->count();
+
+        echo "I professori sono $num <br><br>";
+
+
         $professors = Professor::all();
 
         foreach ($professors as $professor) {
@@ -30,6 +35,17 @@ class ProfessorController extends Controller
 
     public function getSingleProf($id)
     {
+
+
+
+        Professor::firstOrCreate([
+            'Name' => 'Maria',
+            'Subject' => 'Storia',
+            'Hours' => 81,
+            'Room' => "56f"
+
+        ]);
+
 
         //Professor::findOrFail($id);
         $professors = Professor::where('Hours', '>', 25)->get();

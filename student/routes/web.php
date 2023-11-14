@@ -41,3 +41,4 @@ Route::post('/cerca', ['App\Http\Controllers\StudentController', 'cerca']);
 
 //eloquent
 Route::get('/mostraprofessori', ['App\Http\Controllers\ProfessorController', 'show']);
+Route::get('/trovaprofessore/{id}', ['App\Http\Controllers\ProfessorController', 'getSingleProf']);

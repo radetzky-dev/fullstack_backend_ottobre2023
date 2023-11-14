@@ -30,6 +30,23 @@ class ProfessorController extends Controller
 
     public function getSingleProf($id)
     {
+
+        //Professor::findOrFail($id);
+
+        $professors = Professor::where('Hours', '>', 25)->get();
+
+        echo "<pre>";
+        // print_r($professors->toArray());
+        echo "</pre>";
+
+        echo "Professori con più di 25 ore<br>";
+
+        foreach ($professors as $professor) {
+            echo $professor['Name'] . ' ' . $professor['Hours'] . '<br>';
+        }
+
+
+        echo "Professore con id di $id<br>";
         $professors = Professor::find($id);
 
         if (is_null($professors)) {

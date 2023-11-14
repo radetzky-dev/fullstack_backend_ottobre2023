@@ -37,3 +37,7 @@ Route::get('/mostramail2/{name}/{pwd}', ['App\Http\Controllers\StudentController
 Route::get('/findstudent/{id}', ['App\Http\Controllers\StudentController', 'findById']);
 Route::get('/showmails', ['App\Http\Controllers\StudentController', 'showOnlyMails']);
 Route::post('/cerca', ['App\Http\Controllers\StudentController', 'cerca']);
+
+
+//eloquent
+Route::get('/mostraprofessori', ['App\Http\Controllers\ProfessorController', 'show']);

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('../layout')
 
 @section('content')
     <style>
@@ -6,16 +6,13 @@
             margin-top: 50px;
         }
     </style>
-    <h3>Lista studenti</h3>
-    <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm">Inserisci utente</a> |
-    <a href="{{ route('mostratutti') }}" class="btn btn-primary btn-sm">Mostra tutti gli utenti</a> |
+    <h3>Lista professori</h3>
+    <a href="{{ route('prof.create') }}" class="btn btn-primary btn-sm">Inserisci professore</a> |
     <a href="{{ route('prof.index') }}" class="btn btn-primary btn-sm">Mostra tutti i professori</a>
 
-    <form method="POST" action="cerca" class="push-top">
-        @csrf
-        Cerca nome <input type="text" id="name" name="name" required>
-        <input type="submit" value="Invia" />
-    </form>
+    |
+    <a href="{{ route('mostratutti') }}" class="btn btn-primary btn-sm">Mostra tutti gli studenti</a>
+
 
     <div class="push-top">
         @if (session()->get('success'))
@@ -28,23 +25,22 @@
                 <tr class="table-warning">
                     <td>ID</td>
                     <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                    <td>Password</td>
+                    <td>Subject</td>
+                    <td>Hours</td>
+                    <td>Room</td>
                     <td class="text-center">Action</td>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($student as $students)
+                @foreach ($prof as $professor)
                     <tr>
-                        <td>{{ $students->id }}</td>
-                        <td>{{ $students->name }}</td>
-                        <td>{{ $students->email }}</td>
-                        <td>{{ $students->phone }}</td>
-                        <td>{{ $students->password }}</td>
+                        <td>{{ $professor->id }}</td>
+                        <td>{{ $professor->Name }}</td>
+                        <td>{{ $professor->Subject }}</td>
+                        <td>{{ $professor->Hours }}</td>
+                        <td>{{ $professor->Room }}</td>
                         <td class="text-center">
-                            <a href="{{ route('students.edit', $students->id) }}" class="btn btn-primary btn-sm"">Edit</a>
-                            <form action="{{ route('students.destroy', $students->id) }}" method="post"
+                            <form action="{{ route('prof.destroy', $professor->id) }}" method="post"
                                 style="display: inline-block">
                                 @csrf
                                 @method('DELETE')

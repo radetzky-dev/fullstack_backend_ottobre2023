@@ -7,12 +7,63 @@ use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
 {
+
+    public function create()
+    {
+        return view('prof.create');
+    }
+
+    public function index()
+    {
+        $prof = Professor::all();
+        return view('prof.index', compact('prof'));
+    }
+
+    public function destroy($id)
+    {
+        /*  $prof = Professor::findOrFail($id);
+          $prof->delete(); */
+
+        Professor::destroy($id);
+
+        return redirect('/showprofessore')->with('success', 'Prof has been deleted');
+    }
+
+
+    public function store(Request $request)
+    {
+        //echo $request->input("Name");
+        //echo '<br>' . $request->input("Subject");
+
+        $storeData = $request->validate([
+            'Name' => 'required|max:50',
+            'Subject' => 'required|max:50',
+            'Hours' => 'numeric',
+            'Room' => 'max:4',
+        ]);
+
+        // dd($storeData);
+
+
+        /*
+        $prof = new Professor;
+        $prof->Name = $request->input("Name");
+        $prof->Subject = $request->input("Subject");
+        $prof->save();
+        */
+
+
+        Professor::create($storeData);
+
+        return redirect('/showprofessore')->with('success', 'Professor has been saved!');
+
+    }
+
     public function show()
     {
         $num = Professor::all()->count();
 
         echo "I professori sono $num <br><br>";
-
 
         $professors = Professor::all();
 

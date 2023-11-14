@@ -40,5 +40,10 @@ Route::post('/cerca', ['App\Http\Controllers\StudentController', 'cerca']);
 
 
 //eloquent
+Route::get('/creaprofessore', ['App\Http\Controllers\ProfessorController', 'create'])->name("prof.create");
+Route::get('/showprofessore', ['App\Http\Controllers\ProfessorController', 'index'])->name("prof.index");
 Route::get('/mostraprofessori', ['App\Http\Controllers\ProfessorController', 'show']);
 Route::get('/trovaprofessore/{id}', ['App\Http\Controllers\ProfessorController', 'getSingleProf']);
+
+Route::post('/prof/store', ['App\Http\Controllers\ProfessorController', 'store'])->name("prof.store");
+Route::delete('/prof/destroy/{id}', ['App\Http\Controllers\ProfessorController', 'destroy'])->name("prof.destroy");

@@ -32,7 +32,6 @@ class ProfessorController extends Controller
     {
 
         //Professor::findOrFail($id);
-
         $professors = Professor::where('Hours', '>', 25)->get();
 
         echo "<pre>";
@@ -45,8 +44,7 @@ class ProfessorController extends Controller
             echo $professor['Name'] . ' ' . $professor['Hours'] . '<br>';
         }
 
-
-        echo "Professore con id di $id<br>";
+        echo "<br>Professore con id $id<br>";
         $professors = Professor::find($id);
 
         if (is_null($professors)) {

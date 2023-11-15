@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,3 +56,7 @@ Route::get('/show/comment/{id}', ['App\Http\Controllers\StudentController', 'sho
 
 Route::get('/prof/mail', [ProfessorController::class, 'searchMail'])->name('prof.mail');
 Route::post('/prof/search', [ProfessorController::class, 'resultMail'])->name('prof.search');
+
+Route::get('session/get', [SessionController::class, 'accessSessionData']);
+Route::get('session/set', [SessionController::class, 'storeSessionData']);
+Route::get('session/remove', [SessionController::class, 'deleteSessionData']);

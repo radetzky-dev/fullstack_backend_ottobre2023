@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StudentController extends Controller
 {
@@ -19,7 +20,14 @@ class StudentController extends Controller
 
     public function getMail($name)
     {
+        Log::debug("Arrivata richiesta con nome $name");
         $user = DB::table('students')->where('name', $name)->first();
+
+        if (is_null($user)) {
+            Log::debug("Nessuna mail corrispondente per  " . $name);
+            return "";
+        }
+        //  Log::debug("Utente corrispondente " . $user);
         return $user->email;
     }
 

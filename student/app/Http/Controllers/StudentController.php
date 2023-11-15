@@ -24,12 +24,13 @@ class StudentController extends Controller
         $user = DB::table('students')->where('name', $name)->first();
 
         if (is_null($user)) {
-            Log::debug("Nessuna mail corrispondente per  " . $name);
+            Log::error("Nessuna mail corrispondente per  " . $name);
             return "";
         }
         //  Log::debug("Utente corrispondente " . $user);
         return $user->email;
     }
+
 
     public function getExtraMail($name, $pwd)
     {

@@ -12,6 +12,8 @@
 
     |
     <a href="{{ route('mostratutti') }}" class="btn btn-primary btn-sm">Mostra tutti gli studenti</a>
+    |
+    <a href="{{ route('prof.mail') }}" class="btn btn-primary btn-sm">Cerca materia professore</a>
 
 
     <div class="push-top">

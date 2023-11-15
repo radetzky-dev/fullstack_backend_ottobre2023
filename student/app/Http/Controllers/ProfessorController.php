@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Professor;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 class ProfessorController extends Controller
 {
@@ -87,8 +89,6 @@ class ProfessorController extends Controller
     public function getSingleProf($id)
     {
 
-
-
         Professor::firstOrCreate([
             'Name' => 'Maria',
             'Subject' => 'Storia',
@@ -96,8 +96,6 @@ class ProfessorController extends Controller
             'Room' => "56f"
 
         ]);
-
-
         //Professor::findOrFail($id);
         $professors = Professor::where('Hours', '>', 25)->get();
 
@@ -125,7 +123,25 @@ class ProfessorController extends Controller
             echo "Professore " . $professors['Name'] . '<br>';
         }
 
+    }
 
+
+
+
+    public function searchMail()
+    {
+        return view('prof.search');
+    }
+
+    public function resultMail(Request $request)
+    {
+        try {
+            $professor = Professor::findOrFail($request->input('prof_id'));
+        } catch (ModelNotFoundException $exception) {
+            Log::warning("Il professore con id " . $request->input('prof_id') . ' non è stato trovato');
+            return back()->withError('Attenzion ID non trovato!')->withInput();
+        }
+        return view('prof.materia', compact('professor'));
     }
 
 }

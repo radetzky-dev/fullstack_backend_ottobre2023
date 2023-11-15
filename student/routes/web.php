@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfessorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +51,7 @@ Route::delete('/prof/destroy/{id}', ['App\Http\Controllers\ProfessorController',
 
 Route::get('/students/store/comment', ['App\Http\Controllers\StudentController', 'store_comment'])->name('storeComment');
 Route::get('/show/comment/{id}', ['App\Http\Controllers\StudentController', 'showComments'])->name("comments");
+
+
+Route::get('/prof/mail', [ProfessorController::class, 'searchMail'])->name('prof.mail');
+Route::post('/prof/search', [ProfessorController::class, 'resultMail'])->name('prof.search');

@@ -11,6 +11,13 @@
 
 <body>
     <div class="container">
+
+        @if (session()->get('my_name'))
+            <div class="alert alert-success">
+                Benvenuto {{ session()->get('my_name') }}
+            </div><br />
+        @endif
+
         @yield('content')
     </div>
 

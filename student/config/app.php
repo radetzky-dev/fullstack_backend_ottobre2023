@@ -109,6 +109,7 @@ return [
     |
     */
 
+
     'faker_locale' => 'it_IT',
 
     /*

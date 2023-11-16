@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,14 @@ Route::post('/dologin', [LoginController::class, 'login'])->name('login.perform'
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.perform');
 
 Route::get('/pay', [ProductController::class, 'pay'])->name('pay.start');
+
+
+Route::controller(PaymentController::class)
+    ->prefix('paypal')
+    ->group(function () {
+        Route::view('payment', 'paypal')->name('create.payment');
+        Route::get('handle-payment', 'handlePayment')->name('make.payment');
+        Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
+        Route::get('payment-success', 'paymentSuccess')->name('success.payment');
+    });
 

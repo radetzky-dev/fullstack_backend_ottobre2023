@@ -36,6 +36,13 @@
                             {{ Cart::getTotalQuantity() }}
                         </a>
 
+                        @guest
+                            <div class="mt-3 hover:underline sm:mx-3 sm:mt-0">
+                                <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
+
+                            </div>
+                        @endguest
+
                     </div>
                 </nav>
             </div>

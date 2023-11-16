@@ -8,6 +8,18 @@
             <p>Questo solo se sei loggato lo vedi</p>
             <img class="mb-4" src="{!! url('images/ok.png') !!}" alt="" width="300" height="300">
 
+            <p>TODO vedere il ruolo dell'utente...</p>
+            <?php
+            $user = auth()->user();
+            //   $user = \App\Models\User::find(2);
+            echo 'Ciao ' . $user->name . '<br>';
+            if ($user->hasRole('manager')) {
+                echo 'SEI UN MANAGER';
+            }
+            if ($user->hasRole('cliente')) {
+                echo 'SEI UN CLIENTE LOGGATO';
+            }
+            ?>
         @endauth
 
         @guest

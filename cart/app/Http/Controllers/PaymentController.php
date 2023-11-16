@@ -9,6 +9,8 @@ class PaymentController extends Controller
 {
     public function handlePayment(Request $request)
     {
+        $importo = $request->importo;
+
         $provider = new PayPalClient(config('paypal'));
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
@@ -22,7 +24,7 @@ class PaymentController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "EUR",
-                        "value" => "1.00"
+                        "value" => $importo
                     ]
                 ]
             ]

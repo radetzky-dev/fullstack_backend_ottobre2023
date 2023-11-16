@@ -17,8 +17,12 @@
 
                         @auth
                             <div>
-                                Total: €{{ Cart::getTotal() }}
-                                <a class="px-4 py-2 text-white bg-blue-800 rounded">Paga con PayPal o Carta di Credito</a>
+                                Totale da pagare: €{{ Cart::getTotal() }}
+                                <form method="get" action="{{ route('make.payment') }}">
+                                    <input type="hidden" name="importo" value="{{ Cart::getTotal() }}">
+                                    <input type="submit" value="PAGA">
+                                </form>
+
                             </div>
                         @endauth
 

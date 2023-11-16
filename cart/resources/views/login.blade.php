@@ -10,8 +10,8 @@
 
 
             <div class="form-group form-floating mb-3">
-                <input type="text" class="form-control" name="username" value="{{ old('username') }}"
-                    placeholder="Username" required="required" autofocus>
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name"
+                    required="required" autofocus>
 
                 @if ($errors->has('username'))
                     <span class="text-danger text-left">{{ $errors->first('username') }}</span>

@@ -43,6 +43,16 @@
                             </div>
                         @endguest
 
+                        @auth
+                            <div class="mt-3 hover:underline sm:mx-3 sm:mt-0">
+                                Ciao {{ auth()->user()->name }}
+                            </div>
+                            <div class="text-end">
+                                <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+                            </div>
+
+                        @endauth
+
                     </div>
                 </nav>
             </div>

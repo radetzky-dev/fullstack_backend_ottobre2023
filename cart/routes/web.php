@@ -25,4 +25,5 @@ Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear'
 
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/dologin', [LoginController::class, 'login'])->name('login.perform');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout.perform');
 

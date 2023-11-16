@@ -24,8 +24,6 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        //  var_dump($credentials);
-
         if (!Auth::validate($credentials)):
             return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));

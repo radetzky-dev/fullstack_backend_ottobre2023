@@ -13,15 +13,7 @@
     <div class="bg-white">
         <header>
             <div class="container px-6 py-3 mx-auto">
-                <div class="flex items-center justify-between">
 
-
-                    <div class="flex items-center justify-end w-full">
-                        <button" class="mx-4 text-gray-600 focus:outline-none sm:mx-0">
-
-                            </button>
-                    </div>
-                </div>
                 <nav class="p-6 mt-4 text-white bg-black sm:flex sm:justify-center sm:items-center">
                     <div class="flex flex-col sm:flex-row">
 
@@ -39,7 +31,6 @@
                         @guest
                             <div class="mt-3 hover:underline sm:mx-3 sm:mt-0">
                                 <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
-
                             </div>
                         @endguest
 
@@ -50,7 +41,6 @@
                             <div class="text-end">
                                 <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
                             </div>
-
                         @endauth
 
                     </div>

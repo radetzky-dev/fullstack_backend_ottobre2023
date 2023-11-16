@@ -14,9 +14,10 @@
                     <h3 class="text-3xl text-bold">PAGAMENTO</h3>
                     <div class="flex-1">
 
+
                         @auth
                             <div>
-                                Total: ${{ Cart::getTotal() }}
+                                Total: €{{ Cart::getTotal() }}
                                 <a class="px-4 py-2 text-white bg-blue-800 rounded">Paga con PayPal o Carta di Credito</a>
                             </div>
                         @endauth

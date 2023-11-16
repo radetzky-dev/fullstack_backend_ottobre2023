@@ -12,7 +12,7 @@
                     </div>
                     <div class="px-5 py-3">
                         <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
-                        <span class="mt-2 text-gray-500">${{ $product->price }}</span>
+                        <span class="mt-2 text-gray-500">€{{ $product->price }}</span>
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="{{ $product->id }}" name="id">
@@ -21,7 +21,13 @@
                             <input type="hidden" value="{{ $product->image }}" name="image">
                             <input type="hidden" value="1" name="quantity">
 
-                            <button class="px-4 py-2 text-white bg-blue-800 rounded">Compra</button>
+                            @auth
+                                @if (Auth::user()->hasRole('manager'))
+                                    <a href="#" class="px-4 py-2 text-white bg-red-800 rounded">Modica</a>
+                                @else
+                                    <button class="px-4 py-2 text-white bg-blue-800 rounded">Compra</button>
+                                @endif
+                            @endauth
 
 
                         </form>

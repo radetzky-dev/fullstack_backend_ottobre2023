@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -11,10 +12,14 @@ class LoginController extends Controller
         return view('login');
     }
 
+
+    //Modello : https://codeanddeploy.com/blog/laravel/laravel-8-authentication-login-and-registration-with-username-or-email
     public function login(Request $request)
     {
-        /* $credentials = $request->getCredentials();
+        $credentials = [$request->username, $request->password];
 
+        var_dump($credentials);
+        /*
          if (!Auth::validate($credentials)):
              return redirect()->to('login')
                  ->withErrors(trans('auth.failed'));
@@ -25,6 +30,6 @@ class LoginController extends Controller
          Auth::login($user);
 
          return $this->authenticated($request, $user); */
-        echo "login";
+
     }
 }
